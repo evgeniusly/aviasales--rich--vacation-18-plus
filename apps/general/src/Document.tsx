@@ -5,6 +5,8 @@ import { Body, Head, Html, Root, Scripts } from '@modern-js/runtime/document'
 
 import { meta } from '~/defs'
 
+import { AnalyticsBody, AnalyticsHead } from './components/Analytics'
+
 export default function Document(): JSX.Element {
   return (
     <Html lang="ru">
@@ -30,8 +32,12 @@ export default function Document(): JSX.Element {
         <link rel="apple-touch-icon" href={getPath('icon1.png')} type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href={getPath('icon2.png')} type="image/png" sizes="144x144" />
         {/* <!-- End OG --> */}
+
+        <AnalyticsHead />
       </Head>
       <Body>
+        <AnalyticsBody />
+
         <Root />
         <Scripts />
       </Body>
