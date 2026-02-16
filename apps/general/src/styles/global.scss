@@ -1,6 +1,6 @@
 :root {
-  --font-color-main: #161618;
-  --background-color-main: #b2def7;
+  --font-color-main: #000000;
+  --background-color-main: #f5f3f0;
   --transition-main: 0.2s ease-in-out;
   --transition-screen: 0.6s ease-in-out;
 
@@ -13,11 +13,11 @@
   }
 }
 
-// @font-face {
-//   font-family: "FontName";
-//   src: url("../assets/fonts/FontName.otf") format("opentype");
-//   font-weight: 400;
-// }
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('../assets/fonts/BebasNeue-Bold.otf') format('opentype');
+  font-weight: 700;
+}
 
 html {
   color: var(--font-color-main, #161618);
@@ -58,12 +58,12 @@ p:not(:last-child) {
 }
 
 a {
-  color: #0c73fe;
+  color: #00afaa;
   text-decoration: underline;
   transition: color var(--transition-main);
 
   @include hover {
-    color: #0c73fe;
+    color: #00afaa;
     opacity: 0.8;
   }
 }

@@ -5,6 +5,7 @@
   align-self: flex-start;
   flex: 0 0 auto;
   color: var(--button-font-color);
+  font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
   background: var(--button-background-color);
@@ -13,11 +14,11 @@
   transition-property: background, color;
 
   @include desktop {
-    gap: dpx(4);
+    gap: dpx(32);
     padding: dpx(16 24);
-    height: dpx(64);
-    font-size: dpx(24);
-    border-radius: dpx(12);
+    height: dpx(82);
+    font-size: dpx(26);
+    border-radius: dpx(64);
     cursor: pointer;
 
     &:hover {
@@ -43,10 +44,10 @@
 
 .button,
 a.button {
-  --button-font-color: #fff;
-  --button-font-color-hover: #fff;
-  --button-font-color-active: #fff;
-  --button-background-color: #000;
+  --button-font-color: #ffffff;
+  --button-font-color-hover: #ffffff;
+  --button-font-color-active: #ffffff;
+  --button-background-color: #e9511d;
   --button-background-color-hover: color-mix(in srgb, var(--button-background-color), white 20%);
   --button-background-color-active: color-mix(in srgb, var(--button-background-color), white 40%);
   @include button;

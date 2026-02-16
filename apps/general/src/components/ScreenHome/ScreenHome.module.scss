@@ -10,11 +10,8 @@
   height: 100%;
   overflow: hidden;
 
-  @include mobile {
-    position: relative;
-    justify-content: flex-start;
-    min-height: 100vh;
-    min-height: 100dvh;
+  @include desktop {
+    padding-top: dpx(78);
   }
 }
 
@@ -22,7 +19,10 @@
   position: relative;
 
   @include desktop {
-    width: dpx(1620);
+    display: grid;
+    grid-template-columns: 956fr 964fr;
+    width: 100%;
+    height: 100%;
   }
 
   @include mobile {
@@ -30,30 +30,120 @@
   }
 }
 
-.body {
+.bodyWrap {
   @include desktop {
-    width: dpx(660);
+    display: grid;
+    justify-content: end;
+    background-image: image('dotsPattern.png');
+    background-size: dpx(228.65);
+    background-position: right center;
   }
 }
 
-.title {
-  font-weight: 700;
+.body {
+  @include desktop {
+    display: grid;
+    align-content: center;
+    width: dpx(847);
+    height: 100%;
+    padding-bottom: dpx(184);
+    border-left: dpx(2) solid #002d50;
+    border-right: dpx(2) solid #002d50;
+    background: #f5f3f0;
+  }
+}
+
+.titleWrap {
+  display: grid;
+  text-align: center;
 
   @include desktop {
-    margin-bottom: dpx(40);
-    font-size: dpx(64);
+    grid-template-columns: 1fr dpx(327) 1fr;
+    margin-bottom: dpx(35);
+    border-bottom: dpx(2) solid #002d50;
+  }
+
+  > * {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+
+    @include desktop {
+      height: dpx(224);
+    }
+  }
+}
+
+.titleMain {
+  @include desktop {
+    grid-column: span 3 / span 3;
+    border-bottom: dpx(2) solid #002d50;
+  }
+}
+
+.titleMainContent {
+  color: #002d50;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 90%;
+  text-transform: uppercase;
+
+  @include desktop {
+    margin-top: dpx(16);
+    font-size: dpx(240);
+    letter-spacing: dpx(4.8);
   }
 
   @include mobile {
-    margin-bottom: mpx(16);
     font-size: mpx(28);
   }
 }
 
-.text {
+.glass {
+  display: block;
+
   @include desktop {
-    margin-bottom: dpx(72);
-    font-size: dpx(26);
+    width: dpx(176);
+    height: dpx(189);
+  }
+}
+
+.titleSec {
+  @include desktop {
+    border-left: dpx(2) solid #002d50;
+    border-right: dpx(2) solid #002d50;
+  }
+}
+
+.titleSecContent {
+  color: #002d50;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 90%;
+  text-transform: uppercase;
+
+  @include desktop {
+    margin-top: dpx(16);
+    font-size: dpx(240);
+    letter-spacing: dpx(-4.8);
+  }
+}
+
+.homeCircles {
+  @include desktop {
+    width: dpx(85);
+    height: dpx(203);
+  }
+}
+
+.text {
+  text-align: center;
+  line-height: 140%;
+
+  @include desktop {
+    width: dpx(698);
+    margin: 0 auto dpx(48);
+    font-size: dpx(24);
   }
 
   @include mobile {
@@ -63,14 +153,91 @@
 }
 
 .actions {
-  display: flex;
+  display: grid;
 
   @include desktop {
-    gap: dpx(20);
+    gap: dpx(24);
+    width: dpx(376);
+    margin: auto;
   }
 
   @include mobile {
-    flex-direction: column;
     gap: mpx(20);
+  }
+}
+
+.toResultBtn {
+  border: none;
+  background: none;
+  outline: none;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+
+  @include desktop {
+    font-size: dpx(24);
+    cursor: pointer;
+    transition: opacity var(--transition-main);
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.partyWrap {
+  @include desktop {
+    display: grid;
+    align-items: center;
+  }
+}
+
+.partyContent {
+  position: relative;
+
+  @include desktop {
+    width: dpx(963);
+    height: dpx(900);
+  }
+}
+
+.partyBack {
+  position: absolute;
+  display: block;
+
+  @include desktop {
+    left: dpx(123);
+    bottom: dpx(-266);
+    width: dpx(728);
+    height: dpx(730);
+  }
+}
+
+.partyDots {
+  position: absolute;
+
+  @include desktop {
+    left: 0;
+    top: dpx(672);
+    width: 100vw;
+    height: 100vh;
+    background-image: image('dotsPattern.png');
+    background-size: dpx(228.65);
+    background-position: left top;
+  }
+}
+
+.partyCircles {
+  position: absolute;
+  display: block;
+
+  @include desktop {
+    left: dpx(88);
+    bottom: dpx(11);
+    width: dpx(791);
+    height: dpx(888);
   }
 }

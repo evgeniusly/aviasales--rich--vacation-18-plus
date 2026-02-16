@@ -5,6 +5,12 @@
   left: 0;
   top: 0;
   width: 100%;
+  background: #f5f3f0;
+
+  @include desktop {
+    height: dpx(80);
+    border-bottom: dpx(2) solid #002d50;
+  }
 }
 
 .content {
@@ -14,8 +20,8 @@
   position: relative;
 
   @include desktop {
-    padding-top: dpx(32);
-    width: dpx(1805);
+    width: dpx(1920);
+    padding: dpx(12 42);
   }
 
   @include mobile {
@@ -30,7 +36,7 @@
   align-items: center;
 
   @include desktop {
-    gap: dpx(32);
+    gap: dpx(16);
   }
 
   @include mobile {
@@ -53,8 +59,8 @@
   display: block;
 
   @include desktop {
-    width: dpx(192);
-    height: dpx(40);
+    width: dpx(134.05);
+    height: dpx(28);
   }
 
   @include mobile {
@@ -67,8 +73,8 @@
   display: block;
 
   @include desktop {
-    width: dpx(192);
-    height: dpx(40);
+    width: dpx(78);
+    height: dpx(28);
   }
 
   @include mobile {
@@ -79,10 +85,11 @@
 
 .cross {
   display: block;
+  overflow: visible;
 
   @include desktop {
-    width: dpx(16);
-    height: dpx(16);
+    width: dpx(10);
+    height: dpx(10);
   }
 
   @include mobile {
@@ -93,17 +100,19 @@
 
 .rulesLink {
   display: block;
-  color: #fff;
+  color: #3c2f2e;
   font-weight: 400;
   line-height: 130%;
   text-decoration: none;
+  background: rgba(255, 255, 255, 0.7);
 
   @include desktop {
+    padding: dpx(6 16);
     font-size: dpx(16);
+    border-radius: dpx(32);
 
     &:hover {
-      color: #fff;
-      text-decoration: underline;
+      color: #3c2f2e;
     }
   }
 

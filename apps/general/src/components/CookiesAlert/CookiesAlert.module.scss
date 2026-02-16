@@ -1,9 +1,9 @@
 .cookies {
   --cookies-bg-color: #fff;
   --cookies-text-color: #000000;
-  --cookies-link-color: #9c9c9c;
-  --cookies-button-bg-color: #9c9c9c;
-  --cookies-button-text-color: #fff;
+  --cookies-link-color: #00afaa;
+  --cookies-button-bg-color: #e7c37d;
+  --cookies-button-text-color: #000000;
 
   display: flex;
   align-items: center;
@@ -17,10 +17,15 @@
   background: var(--cookies-bg-color);
 
   @include desktop {
+    justify-content: center;
     gap: dpx(16);
-    width: dpx(774);
+    left: dpx(107);
+    right: dpx(963);
+    width: dpx(846);
     padding: dpx(12 24);
-    border-radius: dpx(12 12 0 0);
+    border-top: dpx(2) solid #002d50;
+    border-right: dpx(2) solid #002d50;
+    border-left: dpx(2) solid #002d50;
   }
 
   @include mobile {
@@ -43,11 +48,6 @@
   @include mobile {
     font-size: mpx(13);
   }
-
-  a {
-    color: var(--cookies-link-color);
-    text-decoration: none;
-  }
 }
 
 .button {
@@ -63,11 +63,17 @@
   border: none;
 
   @include desktop {
-    width: dpx(106);
+    width: dpx(74);
     height: dpx(31);
     font-size: dpx(14);
+    letter-spacing: dpx(-0.3);
     border-radius: dpx(8);
     cursor: pointer;
+    transition: opacity var(--transition-main);
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   @include mobile {
