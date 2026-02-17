@@ -1,63 +1,62 @@
 import classNames from 'classnames'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import { TestQuestion } from '@kosyanmedia/devcom-spec-uikit/dist/collections'
+import { SmartCaptcha } from '@kosyanmedia/devcom-spec-uikit/dist/elements'
 
-import { preloads, questions } from '~/data'
+import { answerIncrement } from '~/api/result'
+import progressStar from '~/assets/images/progressStar.svg?url'
+import { preloads } from '~/data'
+import { CardData, CardId, cards } from '~/data/cards'
+import { useDelay } from '~/hooks'
 import { useAppStore } from '~/store/appStore'
 import { useGameStore } from '~/store/gameStore'
 import assetPreloader from '~/utils/assetPreloader'
+import { shuffledArray } from '~/utils/helpers'
 
 import classes from './ScreenGame.module.scss'
 
 export const ScreenGame: React.FC = () => {
   const deviceType = useAppStore((state) => state.deviceType)
   const isScreenInvisible = useAppStore((state) => state.isScreenInvisible)
+  const gotoResults = useAppStore((state) => state.gotoResults)
   const deskMob = useAppStore((store) => store.deskMob)
-  const hideScreen = useAppStore((store) => store.hideScreen)
-  const showScreen = useAppStore((store) => store.showScreen)
+  const setAnswer = useGameStore((state) => state.setAnswer)
 
-  const questionId = useGameStore((store) => store.questionId)
-  const setAnswer = useGameStore((store) => store.setAnswer)
-  const goNext = useGameStore((store) => store.goNext)
+  const [delay] = useDelay()
 
-  const [isAnswered, setIsAnswered] = useState(false)
+  const captchaRef = useRef<{ value: string | null }>(null)
+  const cardList = useRef<[CardId, CardData][]>([])
 
-  const timers = useRef<{ [key: string]: NodeJS.Timeout }>({})
+  const [isEnding, setIsEnding] = useState(false)
+  const [leftCard, setLeftCard] = useState<[CardId, CardData] | null>(null)
+  const [rightCard, setRightCard] = useState<[CardId, CardData] | null>(null)
+  const [isLeftSelected, setIsLeftSelected] = useState(false)
+  const [isRightSelected, setIsRightSelected] = useState(false)
+  const [curStep, setCurStep] = useState(1)
 
-  const questionData = useMemo(() => {
-    return questions[questionId]
-  }, [questionId])
-
-  const onGoNext = useCallback(() => {
-    if (questionId + 1 < questions.length) {
-      hideScreen()
-      timers.current.onQuestionChange = setTimeout(() => {
-        goNext()
-        setIsAnswered(false)
-        showScreen()
-      }, 600)
-    } else {
-      goNext()
-    }
-  }, [questionId, hideScreen, goNext, showScreen])
-
-  useEffect(() => {
-    return (): void => {
-      Object.values(timers.current).forEach((timer) => {
-        clearTimeout(timer)
-      })
-    }
+  const stepsTotal = useMemo(() => {
+    return Object.keys(cards).length - 1
   }, [])
 
-  const setChosenAnswer = useCallback(
-    (value: string) => {
-      const answerData = questions[questionId].answers.find((item) => item.value === value)
-      setAnswer(!!answerData?.isCorrect)
-      setIsAnswered(true)
-    },
-    [questionId, setAnswer],
-  )
+  const onCardSelect = useCallback(async (isLeft: boolean, cardId: CardId) => {
+    ;(isLeft ? setIsLeftSelected : setIsRightSelected)(true)
+
+    if (cardList.current.length < 1) {
+      await answerIncrement(captchaRef?.current?.value, cardId)
+      if (cardId) setAnswer(cardId)
+      await delay(400)
+      setIsEnding(true)
+      await delay(2000)
+      gotoResults()
+      return
+    }
+
+    await delay(800)
+    ;(isLeft ? setRightCard : setLeftCard)(cardList.current.shift() || null)
+    setCurStep((prev) => prev + 1)
+    setIsLeftSelected(false)
+    setIsRightSelected(false)
+  }, [])
 
   useEffect(() => {
     if (deviceType === 'unknown') return
@@ -69,34 +68,72 @@ export const ScreenGame: React.FC = () => {
     ])
   }, [deviceType])
 
+  useEffect(() => {
+    cardList.current = shuffledArray(Object.entries(cards)) as [CardId, CardData][]
+    setLeftCard(cardList.current.shift() || null)
+    setRightCard(cardList.current.shift() || null)
+  }, [])
+
   return (
     <div className={classNames(classes.game, 'screen', isScreenInvisible && 'screenInvisible')}>
+      {process.env.NODE_ENV !== 'development' && (
+        <SmartCaptcha ref={captchaRef} siteKey={process.env.MODERN__SMART_CAPTCHA__SITE_KEY || ''} />
+      )}
+
       <div className={classes.content}>
-        <div className={classes.body}>
-          <TestQuestion
-            key={questionId}
-            currentQuestion={questionId + 1}
-            totalQuestions={questions.length}
-            questionText={questionData.questionText}
-            answers={questionData.answers}
-            onAnswerClick={setChosenAnswer}
-            buttonText={questionData.btnNext}
-            onButtonClick={onGoNext}
-            classes={{
-              className: classes.test,
-              infoClassName: classes.counter,
-              infoTextClassName: classes.counterText,
-              questionClassName: classNames(classes.question, isAnswered && classes.questionAnswered),
-              answersContainerClassName: classes.answers,
-              answerClassName: classes.answer,
-              infoAfterAnswerContainerClassName: classes.result,
-              infoAfterAnswerCorrectTitleClassName: classes.resultTitle,
-              infoAfterAnswerWrongTitleClassName: classes.resultTitle,
-              infoAfterAnswerTextClassName: classes.resultText,
-              infoAfterAnswerDividerClassName: classes.devider,
-              infoAfterAnswerButtonClassName: classes.button,
-            }}
-          />
+        <div className={classNames(classes.main, isEnding && classes.mainHidding)}>
+          <div className={classes.progressWrap}>
+            <div className={classes.progressBar}>
+              <div className={classes.progressBarBack}></div>
+              <div className={classes.progressBarValue} style={{ width: `${(100 * curStep) / stepsTotal}%` }}>
+                <img className={classes.progressStar} src={progressStar} alt="" draggable="false" />
+              </div>
+            </div>
+            <div className={classes.progressCounter}>
+              {curStep} / {stepsTotal}
+            </div>
+          </div>
+
+          <div className={classes.title}>Как выглядит отдых по-взрослому?</div>
+          <div className={classes.subTitle}>Выберите один из&nbsp;двух вариантов</div>
+
+          <div className={classes.selector}>
+            {leftCard && (
+              <div
+                className={classNames(
+                  classes.cardWrap,
+                  classes.cardLeft,
+                  isLeftSelected && classes.cardSelected,
+                  isRightSelected && classes.cardHidden,
+                )}
+              >
+                <div className={classes.cardBody} onClick={() => void onCardSelect(true, leftCard[0])}>
+                  <div className={classes.cardImgWrap}>
+                    <img className={classes.cardImg} src={leftCard[1].img} alt="" draggable="false" />
+                  </div>
+                  <div className={classes.cardTitle}>{leftCard[1].title}</div>
+                </div>
+              </div>
+            )}
+
+            {rightCard && (
+              <div
+                className={classNames(
+                  classes.cardWrap,
+                  classes.cardRight,
+                  isRightSelected && classes.cardSelected,
+                  isLeftSelected && classes.cardHidden,
+                )}
+              >
+                <div className={classes.cardBody} onClick={() => void onCardSelect(false, rightCard[0])}>
+                  <div className={classes.cardImgWrap}>
+                    <img className={classes.cardImg} src={rightCard[1].img} alt="" draggable="false" />
+                  </div>
+                  <div className={classes.cardTitle}>{rightCard[1].title}</div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

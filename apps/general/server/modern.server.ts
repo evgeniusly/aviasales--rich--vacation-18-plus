@@ -6,6 +6,7 @@ import { smartCaptchaMiddleware } from './utils/smart-captcha'
 export default defineServerConfig({
   middlewares: [
     { name: 'smart-captcha-validation', handler: smartCaptchaMiddleware, path: '/api/subscriptions/register' },
+    { name: 'smart-captcha-validation', handler: smartCaptchaMiddleware, path: '/api/result/*', method: 'post' },
     { name: 'cache-static', handler: cacheStaticMiddleware, order: 'pre', path: '/static/*' },
   ],
 })

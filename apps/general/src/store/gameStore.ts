@@ -1,46 +1,39 @@
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 
-import { questions } from '~/data'
-
-import { useAppStore } from './appStore'
+import { CardId } from '~/data/cards'
 
 interface IGameStore {
-  questionId: number
-  correctCount: number
   isTested: boolean
+  resultId: CardId | null
+  noIntro: boolean
 
-  goNext: () => void
-  setAnswer: (isCorrect: boolean) => void
+  setAnswer: (resultId: CardId) => void
+  setNoIntro: () => void
   resetAll: () => void
 }
 
 const initialState = {
-  questionId: 0,
-  correctCount: 0,
+  resultId: null,
   isTested: false,
 }
 
 export const useGameStore = create<IGameStore>()(
   immer((set) => ({
     ...initialState,
+    noIntro: false,
 
-    goNext: (): void => {
+    setAnswer: (resultId): void => {
       set((state) => {
+        state.resultId = resultId
         state.isTested = true
-        if (state.questionId + 1 < questions.length) {
-          state.questionId += 1
-        } else {
-          useAppStore.getState().gotoResults()
-        }
       })
     },
 
-    setAnswer: (isCorrect): void => {
-      if (isCorrect)
-        set((state) => {
-          state.correctCount += 1
-        })
+    setNoIntro: (): void => {
+      set((state) => {
+        state.noIntro = true
+      })
     },
 
     resetAll: (): void => {

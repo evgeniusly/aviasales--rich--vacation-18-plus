@@ -36,12 +36,6 @@ export default defineConfig({
       'process.env.MODERN__WINNERS_LINK': process.env.MODERN__WINNERS_LINK || '',
     },
   },
-  resolve: {
-    alias: {
-      '@assets': './src/assets',
-      '@styles': './src/styles',
-    },
-  },
   tools: {
     sass: {
       additionalData: `@use '@styles/main' as *;\n`,
