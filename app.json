@@ -89,6 +89,10 @@
     "MODERN__WINNERS_LINK": {
       "description": "Link to the video",
       "value": "https://www.aviasales.ru/"
+    },
+    "DATABASE_URL": {
+      "description": "Database url",
+      "value": "postgresql://postgres:postgres@localhost:5432"
     }
   }
 }

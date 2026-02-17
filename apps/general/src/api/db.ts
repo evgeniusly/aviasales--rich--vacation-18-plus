@@ -13,24 +13,16 @@ export const getPrismaClient = (): {
     prisma: PrismaClient<never, GlobalOmitConfig | undefined, DefaultArgs>
   }
 
-  const adapter =
-    globalForPrisma.adapter ||
-    new PrismaPg({
+  if (!globalForPrisma.adapter) {
+    globalForPrisma.adapter = new PrismaPg({
       connectionString: process.env.DATABASE_URL,
-      ...(process.env.NODE_ENV !== 'development'
-        ? {
-            ssl: {
-              rejectUnauthorized: false,
-            },
-          }
-        : {}),
+      ...(process.env.NODE_ENV !== 'development' ? { ssl: { rejectUnauthorized: false } } : {}),
     })
-  const prisma = globalForPrisma.prisma || new PrismaClient({ adapter })
-
-  if (process.env.NODE_ENV !== 'production') {
-    globalForPrisma.adapter = adapter
-    globalForPrisma.prisma = prisma
   }
 
-  return { adapter, prisma }
+  if (!globalForPrisma.prisma) {
+    globalForPrisma.prisma = new PrismaClient({ adapter: globalForPrisma.adapter })
+  }
+
+  return { adapter: globalForPrisma.adapter, prisma: globalForPrisma.prisma }
 }

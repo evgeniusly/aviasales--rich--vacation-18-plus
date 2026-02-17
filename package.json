@@ -16,10 +16,10 @@
   },
   "scripts": {
     "build": "yarn workspace @kosyanmedia/devcom-spec-app build",
+    "release": "yarn workspaces foreach --all run release",
     "start": "yarn workspace @kosyanmedia/devcom-spec-app start:prod",
     "start:dev": "yarn workspace @kosyanmedia/devcom-spec-app start:dev",
     "lint": "yarn workspaces foreach --all run lint",
-    "heroku-postbuild": "yarn build && yarn workspaces focus --all --production",
     "postinstall": "husky || true",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable"
