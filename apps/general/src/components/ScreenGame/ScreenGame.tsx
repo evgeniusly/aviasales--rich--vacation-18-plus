@@ -8,7 +8,6 @@ import loaderAnim from '~/assets/images/loaderAnim.webp'
 import loaderStarBig from '~/assets/images/loaderStarBig.svg?url'
 import loaderStarMid from '~/assets/images/loaderStarMid.svg?url'
 import loaderStarSmall from '~/assets/images/loaderStarSmall.svg?url'
-import progressStar from '~/assets/images/progressStar.svg?url'
 import { preloads } from '~/data'
 import { CardData, CardId, cards } from '~/data/cards'
 import { useDelay } from '~/hooks'
@@ -16,6 +15,8 @@ import { useAppStore } from '~/store/appStore'
 import { useGameStore } from '~/store/gameStore'
 import assetPreloader from '~/utils/assetPreloader'
 import { shuffledArray } from '~/utils/helpers'
+
+import { ProgressBar } from '../ProgressBar'
 
 import classes from './ScreenGame.module.scss'
 
@@ -88,17 +89,7 @@ export const ScreenGame: React.FC = () => {
         <div className={classes.mainBgLeft}></div>
         <div className={classes.mainBgRight}></div>
 
-        <div className={classes.progressWrap}>
-          <div className={classes.progressBar}>
-            <div className={classes.progressBarBack}></div>
-            <div className={classes.progressBarValue} style={{ width: `${(100 * curStep) / stepsTotal}%` }}>
-              <img className={classes.progressStar} src={progressStar} alt="" draggable="false" />
-            </div>
-          </div>
-          <div className={classes.progressCounter}>
-            {curStep} / {stepsTotal}
-          </div>
-        </div>
+        <ProgressBar progress={curStep / stepsTotal} value={`${curStep} / ${stepsTotal}`} />
 
         <div className={classes.title}>Как выглядит отдых по-взрослому?</div>
         <div className={classes.subTitle}>Выберите один из&nbsp;двух вариантов</div>

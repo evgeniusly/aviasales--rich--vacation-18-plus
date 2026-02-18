@@ -14,11 +14,43 @@
   overflow: hidden;
 }
 
-.progressValue {
-  @include desktop {
-    font-size: dpx(34);
+@keyframes preloaderSignAnim {
+  0%,
+  100% {
+    transform: rotate(16deg);
   }
-  @include mobile {
-    font-size: mpx(24);
+  50% {
+    transform: rotate(8deg);
+  }
+}
+.preloaderSign {
+  display: block;
+  transform-origin: 50% 20%;
+  animation: preloaderSignAnim 4s ease-in-out infinite;
+
+  @include desktop {
+    margin: dpx(0 0 78 (242 - 192));
+    width: dpx(133);
+    height: dpx(327);
+  }
+}
+
+.title {
+  color: #002d50;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 100%;
+
+  @include desktop {
+    width: dpx(567);
+    margin-bottom: dpx(16);
+    font-size: dpx(104);
+  }
+}
+
+.text {
+  @include desktop {
+    margin-bottom: dpx(16);
+    font-size: dpx(28);
   }
 }

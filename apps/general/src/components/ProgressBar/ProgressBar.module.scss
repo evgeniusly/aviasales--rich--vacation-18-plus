@@ -1,0 +1,99 @@
+.progressWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include desktop {
+    gap: dpx(8);
+    height: dpx(40);
+    margin-bottom: dpx(43);
+  }
+
+  // @include mobile {
+  //   gap: mpx(4);
+  //   margin-bottom: mpx(38);
+  // }
+}
+
+.progressBar {
+  position: relative;
+
+  @include desktop {
+    width: dpx(440);
+    height: dpx(16);
+  }
+
+  // @include mobile {
+  //   width: mpx(285);
+  //   height: mpx(8);
+  // }
+}
+
+.progressBarBack {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #e9511d;
+  opacity: 0.2;
+
+  @include desktop {
+    border-radius: dpx(20);
+  }
+
+  // @include mobile {
+  //   border-radius: mpx(13);
+  // }
+}
+
+.progressBarValue {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #e9511d;
+  transition: width 0.4s ease-in-out;
+
+  @include desktop {
+    border-radius: dpx(20);
+  }
+
+  // @include mobile {
+  //   border-radius: mpx(100);
+  // }
+}
+
+.progressStar {
+  position: absolute;
+  top: 50%;
+  right: 0;
+
+  @include desktop {
+    width: dpx(37);
+    height: dpx(35);
+    transform: translate(50%, -60%);
+  }
+
+  // @include mobile {
+  //   width: mpx(50);
+  //   height: mpx(50);
+  //   transform: translate(50%, -52%) ;
+  // }
+}
+
+.progressCounter {
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+
+  @include desktop {
+    width: dpx(74);
+    font-size: dpx(23);
+  }
+
+  // @include mobile {
+  //   width: mpx(40);
+  //   font-size: mpx(16);
+  // }
+}
