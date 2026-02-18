@@ -4,6 +4,10 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { SmartCaptcha } from '@kosyanmedia/devcom-spec-uikit/dist/elements'
 
 import { answerIncrement } from '~/api/result'
+import loaderAnim from '~/assets/images/loaderAnim.webp'
+import loaderStarBig from '~/assets/images/loaderStarBig.svg?url'
+import loaderStarMid from '~/assets/images/loaderStarMid.svg?url'
+import loaderStarSmall from '~/assets/images/loaderStarSmall.svg?url'
 import progressStar from '~/assets/images/progressStar.svg?url'
 import { preloads } from '~/data'
 import { CardData, CardId, cards } from '~/data/cards'
@@ -46,7 +50,7 @@ export const ScreenGame: React.FC = () => {
       if (cardId) setAnswer(cardId)
       await delay(400)
       setIsEnding(true)
-      await delay(2000)
+      await delay(3000)
       gotoResults()
       return
     }
@@ -80,60 +84,71 @@ export const ScreenGame: React.FC = () => {
         <SmartCaptcha ref={captchaRef} siteKey={process.env.MODERN__SMART_CAPTCHA__SITE_KEY || ''} />
       )}
 
-      <div className={classes.content}>
-        <div className={classNames(classes.main, isEnding && classes.mainHidding)}>
-          <div className={classes.progressWrap}>
-            <div className={classes.progressBar}>
-              <div className={classes.progressBarBack}></div>
-              <div className={classes.progressBarValue} style={{ width: `${(100 * curStep) / stepsTotal}%` }}>
-                <img className={classes.progressStar} src={progressStar} alt="" draggable="false" />
-              </div>
-            </div>
-            <div className={classes.progressCounter}>
-              {curStep} / {stepsTotal}
+      <div className={classNames(classes.main, isEnding && classes.mainHidding)}>
+        <div className={classes.mainBgLeft}></div>
+        <div className={classes.mainBgRight}></div>
+
+        <div className={classes.progressWrap}>
+          <div className={classes.progressBar}>
+            <div className={classes.progressBarBack}></div>
+            <div className={classes.progressBarValue} style={{ width: `${(100 * curStep) / stepsTotal}%` }}>
+              <img className={classes.progressStar} src={progressStar} alt="" draggable="false" />
             </div>
           </div>
-
-          <div className={classes.title}>Как выглядит отдых по-взрослому?</div>
-          <div className={classes.subTitle}>Выберите один из&nbsp;двух вариантов</div>
-
-          <div className={classes.selector}>
-            {leftCard && (
-              <div
-                className={classNames(
-                  classes.cardWrap,
-                  classes.cardLeft,
-                  isLeftSelected && classes.cardSelected,
-                  isRightSelected && classes.cardHidden,
-                )}
-              >
-                <div className={classes.cardBody} onClick={() => void onCardSelect(true, leftCard[0])}>
-                  <div className={classes.cardImgWrap}>
-                    <img className={classes.cardImg} src={leftCard[1].img} alt="" draggable="false" />
-                  </div>
-                  <div className={classes.cardTitle}>{leftCard[1].title}</div>
-                </div>
-              </div>
-            )}
-
-            {rightCard && (
-              <div
-                className={classNames(
-                  classes.cardWrap,
-                  classes.cardRight,
-                  isRightSelected && classes.cardSelected,
-                  isLeftSelected && classes.cardHidden,
-                )}
-              >
-                <div className={classes.cardBody} onClick={() => void onCardSelect(false, rightCard[0])}>
-                  <div className={classes.cardImgWrap}>
-                    <img className={classes.cardImg} src={rightCard[1].img} alt="" draggable="false" />
-                  </div>
-                  <div className={classes.cardTitle}>{rightCard[1].title}</div>
-                </div>
-              </div>
-            )}
+          <div className={classes.progressCounter}>
+            {curStep} / {stepsTotal}
           </div>
+        </div>
+
+        <div className={classes.title}>Как выглядит отдых по-взрослому?</div>
+        <div className={classes.subTitle}>Выберите один из&nbsp;двух вариантов</div>
+
+        <div className={classes.selector}>
+          {leftCard && (
+            <div
+              className={classNames(
+                classes.cardWrap,
+                classes.cardLeft,
+                isLeftSelected && classes.cardSelected,
+                isRightSelected && classes.cardHidden,
+              )}
+            >
+              <div className={classes.cardBody} onClick={() => void onCardSelect(true, leftCard[0])}>
+                <div className={classes.cardImgWrap}>
+                  <img className={classes.cardImg} src={leftCard[1].img} alt="" draggable="false" />
+                </div>
+                <div className={classes.cardTitle}>{leftCard[1].title}</div>
+              </div>
+            </div>
+          )}
+
+          {rightCard && (
+            <div
+              className={classNames(
+                classes.cardWrap,
+                classes.cardRight,
+                isRightSelected && classes.cardSelected,
+                isLeftSelected && classes.cardHidden,
+              )}
+            >
+              <div className={classes.cardBody} onClick={() => void onCardSelect(false, rightCard[0])}>
+                <div className={classes.cardImgWrap}>
+                  <img className={classes.cardImg} src={rightCard[1].img} alt="" draggable="false" />
+                </div>
+                <div className={classes.cardTitle}>{rightCard[1].title}</div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className={classNames(classes.ending, !isEnding && classes.endingHidding)}>
+        <div className={classes.endingTitle}>Прогружаем результаты</div>
+        <div className={classes.emdingImageWrap}>
+          <img className={classes.loaderStarSmall} src={loaderStarSmall} alt="" draggable="false" />
+          <img className={classes.loaderStarMid} src={loaderStarMid} alt="" draggable="false" />
+          <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
+          <img className={classes.loaderAnim} src={loaderAnim} alt="" draggable="false" />
         </div>
       </div>
     </div>

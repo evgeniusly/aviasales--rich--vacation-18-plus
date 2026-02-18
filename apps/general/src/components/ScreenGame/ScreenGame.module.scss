@@ -28,7 +28,10 @@
   transition-property: transform, opacity;
 
   @include desktop {
-    padding-bottom: dpx(100);
+    padding-top: dpx(25);
+    background-image: image('gameBg.svg');
+    background-position: center;
+    background-size: dpx(3802 1782);
   }
 
   // @include mobile {
@@ -36,9 +39,42 @@
   // }
 }
 
+.mainBgLeft,
+.mainBgRight {
+  position: absolute;
+  margin: auto;
+
+  @include desktop {
+    background-image: image('dotsPattern.png');
+    background-size: dpx(228.65);
+    background-position: right center;
+  }
+}
+
+.mainBgLeft {
+  @include desktop {
+    left: dpx(0 - 1283);
+    top: dpx(923 - 859);
+    right: dpx(2519 - 1283);
+    bottom: dpx(0 - 859);
+    width: dpx(1283);
+    height: dpx(859);
+  }
+}
+.mainBgRight {
+  @include desktop {
+    left: dpx(2613 - 1189);
+    top: dpx(760 - 1022);
+    right: dpx(0 - 1189);
+    bottom: dpx(0 - 1022);
+    width: dpx(1189);
+    height: dpx(1022);
+  }
+}
+
 .mainHidding {
   opacity: 0;
-  transform: translateY(-50%);
+  transform: translateY(-10vh);
   pointer-events: none;
 }
 
@@ -228,6 +264,7 @@
   top: 0;
   width: 100%;
   height: 100%;
+  background: #fff;
   overflow: hidden;
 
   @include desktop {
@@ -243,30 +280,6 @@
     }
   }
 }
-
-// .cardGlow {
-//   position: absolute;
-//   left: 0;
-//   top: 0;
-//   width: 100%;
-//   height: 100%;
-//   filter: blur(10px);
-//   opacity: 0;
-//   transition: opacity 0.2s ease-in-out;
-//   will-change: opacity;
-//   backface-visibility: hidden;
-
-//   @include desktop {
-//     border: dpx(3) solid #fff;
-//     border-radius: dpx(32);
-//   }
-
-//   @include mobile {
-//     border: mpx(2) solid #fff;
-//     border-radius: mpx(16);
-//     filter: blur(mpx(4));
-//   }
-// }
 
 .cardImgWrap {
   position: absolute;
@@ -333,15 +346,131 @@
 
 .cardSelected {
   &.cardLeft {
-    transform: translateX(32%) rotate(2deg);
+    transform: translateX(32%) rotate(2deg) scale(1.15);
   }
   &.cardRight {
-    transform: translateX(-32%) rotate(-2deg);
+    transform: translateX(-32%) rotate(-2deg) scale(1.15);
   }
 }
 
 .cardSelected {
   .cardGlow {
     opacity: 1;
+  }
+}
+
+//
+.ending {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.4s ease-in-out;
+  transition-property: transform, opacity;
+
+  @include desktop {
+    padding-top: dpx(104);
+  }
+}
+
+.endingHidding {
+  opacity: 0;
+  transform: translateY(10vh);
+  pointer-events: none;
+}
+
+.endingTitle {
+  color: #002d50;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 100%;
+  text-align: center;
+
+  @include desktop {
+    margin-bottom: dpx(15);
+    font-size: dpx(104);
+  }
+}
+
+.emdingImageWrap {
+  position: relative;
+
+  @include desktop {
+    width: dpx(720);
+    height: dpx(622);
+  }
+
+  @include mobile {
+    width: mpx(353);
+    height: mpx(390);
+  }
+
+  > * {
+    display: block;
+    position: absolute;
+  }
+}
+
+@keyframes loaderStarSmallAnim {
+  0%,
+  100% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+}
+.loaderStarSmall {
+  animation: loaderStarSmallAnim 6s ease-in-out infinite;
+
+  @include desktop {
+    left: dpx(249);
+    top: dpx(0);
+    width: dpx(102);
+    height: dpx(102);
+  }
+}
+.loaderStarMid {
+  animation: loaderStarSmallAnim 5s ease-in-out infinite;
+
+  @include desktop {
+    left: dpx(135.98);
+    top: dpx(403.98);
+    width: dpx(160);
+    height: dpx(160);
+  }
+}
+
+@keyframes loaderStarBigAnim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loaderStarBig {
+  animation: loaderStarBigAnim 30s linear infinite;
+
+  @include desktop {
+    left: dpx(293);
+    top: dpx(220);
+    width: dpx(332);
+    height: dpx(332);
+  }
+}
+
+.loaderAnim {
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include desktop {
+    top: dpx(57);
+    height: dpx(565);
   }
 }
