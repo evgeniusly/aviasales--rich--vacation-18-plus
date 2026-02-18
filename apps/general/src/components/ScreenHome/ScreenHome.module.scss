@@ -241,3 +241,51 @@
     height: dpx(888);
   }
 }
+
+.homeStars {
+  position: absolute;
+  display: block;
+
+  @include desktop {
+    left: dpx(278);
+    top: dpx(12);
+    width: dpx(455);
+    height: dpx(484);
+  }
+}
+
+.homeBall {
+  position: absolute;
+  display: block;
+
+  @include desktop {
+    left: dpx(266);
+    top: dpx(9);
+    width: dpx(538);
+    height: dpx(693);
+  }
+}
+
+.homeMan {
+  position: absolute;
+  display: block;
+
+  @include desktop {
+    left: dpx(117);
+    top: dpx(99);
+    width: dpx(744);
+    height: dpx(779);
+  }
+}
+
+.homeCats {
+  position: absolute;
+  display: block;
+
+  @include desktop {
+    left: dpx(177);
+    top: dpx(423);
+    width: dpx(627);
+    height: dpx(465);
+  }
+}

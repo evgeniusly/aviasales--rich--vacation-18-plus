@@ -2,7 +2,11 @@ import classNames from 'classnames'
 import React, { useEffect } from 'react'
 
 import glass from '~/assets/images/glass.svg?url'
+import homeBall from '~/assets/images/homeBall.png'
+import homeCats from '~/assets/images/homeCats.png'
 import homeCircles from '~/assets/images/homeCircles.svg?url'
+import homeMan from '~/assets/images/homeMan.png'
+import homeStars from '~/assets/images/homeStars.png'
 import partyBack from '~/assets/images/partyBack.svg?url'
 import partyCircles from '~/assets/images/partyCircles.svg?url'
 import { preloads } from '~/data'
@@ -10,6 +14,8 @@ import { useAppStore } from '~/store/appStore'
 import assetPreloader from '~/utils/assetPreloader'
 
 import { Button } from '../Button'
+import { Floater } from '../Floater'
+import { ParallaxByMouse } from '../ParallaxByMouse'
 
 import classes from './ScreenHome.module.scss'
 
@@ -65,6 +71,18 @@ export const ScreenHome: React.FC = () => {
             <img className={classes.partyBack} src={partyBack} alt="" draggable="false" />
             <div className={classes.partyDots}></div>
             <img className={classes.partyCircles} src={partyCircles} alt="" draggable="false" />
+            <Floater>
+              <img className={classes.homeStars} src={homeStars} alt="" draggable="false" />
+            </Floater>
+            <ParallaxByMouse distance={-1}>
+              <img className={classes.homeBall} src={homeBall} alt="" draggable="false" />
+            </ParallaxByMouse>
+            <ParallaxByMouse distance={2}>
+              <img className={classes.homeMan} src={homeMan} alt="" draggable="false" />
+            </ParallaxByMouse>
+            <ParallaxByMouse distance={4}>
+              <img className={classes.homeCats} src={homeCats} alt="" draggable="false" />
+            </ParallaxByMouse>
           </div>
         </div>
       </div>
