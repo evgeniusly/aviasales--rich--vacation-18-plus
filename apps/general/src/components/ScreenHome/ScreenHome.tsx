@@ -1,6 +1,9 @@
 import classNames from 'classnames'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
+import { SmartCaptcha } from '@kosyanmedia/devcom-spec-uikit/dist/elements'
+
+import { answerIncrement } from '~/api/result'
 import glass from '~/assets/images/glass.svg?url'
 import homeBall from '~/assets/images/homeBall.png'
 import homeCats from '~/assets/images/homeCats.png'
@@ -26,6 +29,8 @@ export const ScreenHome: React.FC = () => {
   const gotoGame = useAppStore((state) => state.gotoGame)
   const gotoResults = useAppStore((state) => state.gotoResults)
 
+  const captchaRef = useRef<{ value: string | null }>(null)
+
   useEffect(() => {
     if (deviceType === 'unknown') return
     void assetPreloader([...preloads.preGame, ...deskMob(preloads.preGameDesk, preloads.preGameMob)])
@@ -33,6 +38,10 @@ export const ScreenHome: React.FC = () => {
 
   return (
     <div className={classNames(classes.home, 'screen', isScreenInvisible && 'screenInvisible')}>
+      {process.env.NODE_ENV !== 'development' && (
+        <SmartCaptcha ref={captchaRef} siteKey={process.env.MODERN__SMART_CAPTCHA__SITE_KEY || ''} />
+      )}
+
       <div className={classes.content}>
         <div className={classes.bodyWrap}>
           <div className={classes.body}>
@@ -59,7 +68,13 @@ export const ScreenHome: React.FC = () => {
               <Button glow onClick={gotoGame}>
                 Пройти опрос
               </Button>
-              <button className={classes.toResultBtn} onClick={gotoResults}>
+              <button
+                className={classes.toResultBtn}
+                onClick={() => {
+                  void answerIncrement(captchaRef?.current?.value)
+                  gotoResults()
+                }}
+              >
                 Сразу к розыгрышу
               </button>
             </div>

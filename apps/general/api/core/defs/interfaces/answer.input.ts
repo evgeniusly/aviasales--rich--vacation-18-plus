@@ -1,5 +1,5 @@
-import { CardId } from '~/data/cards/enums'
+import { CardId, ExtraCardId } from '~/data/cards/enums'
 
 export interface AnswerInput {
-  cardId?: CardId
+  cardId?: CardId | ExtraCardId
 }

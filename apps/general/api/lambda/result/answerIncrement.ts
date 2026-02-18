@@ -1,14 +1,16 @@
 import type { RequestOption } from '@modern-js/bff-core'
 
 import { getPrismaClient } from '~/api/db'
-import { CardId } from '~/data/cards/enums'
+import { CardId, ExtraCardId } from '~/data/cards/enums'
 import { AnswerInput } from '~core/defs/interfaces/answer.input'
 import { AnswerResponse } from '~core/defs/interfaces/answer.response'
 
 export async function post(request: RequestOption<unknown, AnswerInput>): Promise<AnswerResponse> {
-  const cardId = request.data.cardId || 'empty'
+  const { cardId } = request.data
 
-  if (![...Object.values(CardId), 'empty'].includes(cardId)) return { error: 'wrong id' }
+  if (!cardId) return { error: 'empty id' }
+  if (![...Object.values(CardId), ...Object.values(ExtraCardId)].includes(cardId))
+    return { error: `wrong id: ${cardId}` }
 
   const { prisma } = getPrismaClient()
 

@@ -1,27 +1,35 @@
 import { Result } from 'generated/prisma/client'
 
-import { CardId } from '~/data/cards/enums'
+import { CardId, ExtraCardId } from '~/data/cards/enums'
 import { AnswerResponse } from '~core/defs'
 import { AnswerInput } from '~core/defs/interfaces/answer.input'
 
+enum ResultStorageKeys {
+  IsAlreadySkiped = 'isAlreadySkiped',
+  IsAnswered = 'isAnswered',
+}
+
 const tokenName = process.env.MODERN__SMART_CAPTCHA__HEADER_NAME || 'x-smart-captcha-token'
 
-export const getAnswerStat = async (cardId?: CardId): Promise<number> => {
+export const getAnswerStat = async (cardId: CardId | ExtraCardId = ExtraCardId.Skiped): Promise<number> => {
   const res = await fetch('/api/result/getAnswers')
   const data = (await res.json()) as Result[] | undefined
 
   if (!data) return 0
 
-  const targetId = cardId || 'empty'
-
   let targetCount = 0
   let total = 0
 
   data.forEach(({ answerId, counter }) => {
-    if (answerId === (targetId as string)) {
+    if (answerId === (cardId as string)) {
       targetCount = counter
     }
-    if (!(targetId !== 'empty' && answerId === 'empty')) {
+    if (
+      // get full total if looking for 'empty'...
+      cardId === ExtraCardId.Skiped ||
+      // otherwise excleude 'empty' from total
+      answerId !== (ExtraCardId.Skiped as string)
+    ) {
       total += counter
     }
   })
@@ -33,10 +41,16 @@ export const getAnswerStat = async (cardId?: CardId): Promise<number> => {
 
 export const answerIncrement = async (
   captchaToken?: string | null,
-  cardId?: CardId,
+  cardId: CardId | ExtraCardId = ExtraCardId.Skiped,
 ): Promise<AnswerResponse | undefined> => {
-  if (localStorage.getItem('isAnswered')) return
-  localStorage.setItem('isAnswered', 'true')
+  if (localStorage.getItem(ResultStorageKeys.IsAnswered)) return
+
+  if (cardId === ExtraCardId.Skiped) {
+    if (localStorage.getItem(ResultStorageKeys.IsAlreadySkiped)) return
+    localStorage.setItem(ResultStorageKeys.IsAlreadySkiped, 'true')
+  } else {
+    localStorage.setItem(ResultStorageKeys.IsAnswered, 'true')
+  }
 
   const body: AnswerInput = { cardId }
   const res = await fetch('/api/result/answerIncrement', {

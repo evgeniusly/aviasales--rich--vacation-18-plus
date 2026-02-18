@@ -14,3 +14,7 @@ export enum CardId {
   Horrors = 'horrors',
   Cleanup = 'cleanup',
 }
+
+export enum ExtraCardId {
+  Skiped = '_skiped',
+}
