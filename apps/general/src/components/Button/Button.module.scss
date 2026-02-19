@@ -48,8 +48,8 @@ a.button {
   --button-font-color-hover: #ffffff;
   --button-font-color-active: #ffffff;
   --button-background-color: #e9511d;
-  --button-background-color-hover: color-mix(in srgb, var(--button-background-color), white 20%);
-  --button-background-color-active: color-mix(in srgb, var(--button-background-color), white 40%);
+  --button-background-color-hover: #cc3400;
+  --button-background-color-active: #cc3400;
   @include button;
 }
 
@@ -84,4 +84,11 @@ a.button {
 a.disabled {
   pointer-events: none;
   opacity: 0.6;
+}
+
+.blue,
+a.blue {
+  --button-background-color: #002d50;
+  --button-background-color-hover: #000;
+  --button-background-color-active: #000;
 }

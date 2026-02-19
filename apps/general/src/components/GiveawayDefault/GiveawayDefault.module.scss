@@ -31,7 +31,6 @@ $contentPaddingMob: 20;
     align-items: center;
     grid-template-columns: 1fr dpx($contentWidth);
     gap: dpx(40);
-    width: var(--content-width);
     margin: auto;
   }
 }

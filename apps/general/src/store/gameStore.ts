@@ -5,7 +5,7 @@ import { CardId } from '~/data/cards'
 
 interface IGameStore {
   isTested: boolean
-  resultId: CardId | null
+  resultId: CardId | undefined
   noIntro: boolean
 
   setAnswer: (resultId: CardId) => void
@@ -14,7 +14,7 @@ interface IGameStore {
 }
 
 const initialState = {
-  resultId: null,
+  resultId: undefined,
   isTested: false,
 }
 

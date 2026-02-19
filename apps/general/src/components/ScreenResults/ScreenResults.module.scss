@@ -4,11 +4,11 @@
   min-height: 100vh;
 
   @include desktop {
-    padding: dpx(106 0 143);
+    padding: dpx(78 0 0);
   }
 
   @include mobile {
-    padding: mpx(61 20 100);
+    padding: mpx(61 20 0);
   }
 }
 
@@ -17,6 +17,393 @@
   margin: 0 auto;
 
   @include desktop {
-    width: dpx(1824);
+    width: dpx(1434);
+    padding: dpx(48 64);
+    border-left: dpx(2) solid #002d50;
+    border-right: dpx(2) solid #002d50;
+  }
+}
+
+//
+.top {
+  position: relative;
+
+  @include desktop {
+    display: grid;
+  }
+}
+
+.resultLeft {
+  @include desktop {
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    width: 100vw;
+    height: 100%;
+  }
+}
+.resultRight {
+  @include desktop {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100vw;
+    height: 100%;
+  }
+}
+
+.resultLeftTop {
+  @include desktop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: dpx(334);
+    width: 100%;
+    border-bottom: dpx(2) solid #002d50;
+  }
+}
+
+.resultGlass {
+  @include desktop {
+    position: absolute;
+    right: dpx(46);
+    bottom: dpx(51);
+    width: dpx(151);
+    height: dpx(163);
+  }
+}
+
+.resultLeftBottom {
+  @include desktop {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: dpx(244);
+    background-image: image('dotsPattern.png');
+    background-size: dpx(228.65);
+    background-position: right bottom;
+  }
+}
+
+.resultRightCircles {
+  @include desktop {
+    position: absolute;
+    margin: auto;
+    left: dpx(1394);
+    right: dpx(98);
+    bottom: dpx(18);
+    width: dpx(428);
+    height: dpx(428);
+  }
+}
+
+.result {
+  @include desktop {
+    display: grid;
+    grid-template-columns: dpx(801) auto;
+    position: relative;
+    min-height: dpx(660);
+  }
+}
+
+.resultBody {
+  position: relative;
+}
+
+.testedPref {
+  @include desktop {
+    margin-bottom: dpx(24);
+    font-size: dpx(28);
+  }
+}
+
+.resultTitle {
+  color: #002d50;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 100%;
+
+  @include desktop {
+    margin-bottom: dpx(24);
+    font-size: dpx(104);
+  }
+}
+
+.resultText {
+  line-height: 140%;
+
+  @include desktop {
+    font-size: dpx(28);
+  }
+}
+
+.resulttStat {
+  display: grid;
+  align-items: center;
+
+  @include desktop {
+    grid-template-columns: dpx(172) dpx(485);
+    gap: dpx(16);
+  }
+}
+
+.resulttStatValue {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  font-weight: 700;
+  background-image: image('resultStatBg.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  @include desktop {
+    padding-top: dpx(6);
+    font-size: dpx(40);
+    line-height: dpx(48);
+    width: dpx(172);
+    height: dpx(72);
+  }
+}
+
+.resulttStatText {
+  line-height: 140%;
+
+  @include desktop {
+    font-size: dpx(28);
+  }
+}
+
+.resultActions {
+  @include desktop {
+    display: grid;
+    width: dpx(340);
+    margin-top: dpx(48);
+  }
+}
+
+.resultImageWrap {
+  background: #fff;
+
+  @include desktop {
+    width: dpx(450);
+    height: dpx(560);
+    padding: dpx(15 14.999 15 15.001);
+    border: dpx(2) solid var(--Black-100, #000);
+    border-radius: dpx(72);
+    box-shadow: dpx(0 22.239 66.716 0) rgba(36, 33, 83, 0.15);
+    transform: rotate(5deg);
+  }
+}
+
+.resultImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+
+  @include desktop {
+    border-radius: dpx(60);
+  }
+}
+.resultImageCentered {
+  object-position: center;
+}
+
+//
+.promoLeftTop {
+  @include desktop {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: dpx(330);
+    background-image: image('dotsPattern.png');
+    background-size: dpx(228.65);
+    background-position: right top;
+  }
+}
+
+.promoCircles {
+  @include desktop {
+    position: absolute;
+    right: dpx(0);
+    bottom: dpx(0);
+    width: dpx(577);
+    height: dpx(246);
+  }
+}
+
+.promoRightText {
+  @include desktop {
+    display: block;
+    position: absolute;
+    left: dpx(35);
+    top: dpx(48);
+    width: dpx(176);
+    height: dpx(259);
+  }
+}
+
+.promoRightBottom {
+  @include desktop {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: dpx(244);
+    background-image: image('dotsPattern.png');
+    background-size: dpx(228.65);
+    background-position: left bottom;
+  }
+}
+
+.promo {
+  color: #ffffff;
+  background: var(--Main-green, #00afa7);
+
+  @include desktop {
+    display: grid;
+    min-height: dpx(620);
+  }
+}
+
+.promoContent {
+  @include desktop {
+    position: relative;
+    padding-top: dpx(80);
+    padding-bottom: dpx(112);
+  }
+}
+
+.promoBody {
+  @include desktop {
+    width: dpx(683);
+  }
+}
+
+.promoTitle {
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 100%;
+
+  @include desktop {
+    margin-bottom: dpx(16);
+    font-size: dpx(80);
+  }
+}
+
+.promoText {
+  line-height: 140%;
+
+  @include desktop {
+    width: dpx(570);
+    font-size: dpx(28);
+  }
+}
+
+.promoActions {
+  display: grid;
+
+  @include desktop {
+    margin-top: dpx(56);
+    width: dpx(404);
+  }
+}
+
+.promoImageWrap {
+  @include desktop {
+    position: absolute;
+    top: dpx(48);
+    right: dpx(23);
+    width: dpx(537);
+    height: dpx(508);
+  }
+}
+
+.promoImage {
+  @include desktop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@keyframes promoBageAnim {
+  0%,
+  100% {
+    transform: rotate(-40deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+}
+.promoBage {
+  position: absolute;
+  transform-origin: 94% 50%;
+
+  @include desktop {
+    left: dpx(-152);
+    top: dpx(84);
+    width: dpx(244);
+    height: dpx(72);
+    animation: promoBageAnim 6s ease-in-out infinite;
+  }
+}
+
+.promoRope {
+  position: absolute;
+
+  @include desktop {
+    left: dpx(69);
+    top: dpx(95);
+    width: dpx(20);
+    height: dpx(27);
+  }
+}
+
+//
+.giveawayLeftText {
+  @include desktop {
+    display: block;
+    position: absolute;
+    right: dpx(29);
+    bottom: dpx(22);
+    width: dpx(176);
+    height: dpx(646);
+  }
+}
+
+.bottomRightTop {
+  @include desktop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: dpx(336);
+    background-image: image('dotsPattern.png');
+    background-size: dpx(228.65);
+    background-position: left top;
+  }
+}
+
+.giveawayCircles {
+  @include desktop {
+    display: block;
+    position: absolute;
+    left: dpx(0);
+    bottom: dpx(0);
+    width: dpx(243);
+    height: dpx(630);
+  }
+}
+
+.bottom {
+  @include desktop {
+    display: grid;
+    min-height: dpx(744);
   }
 }
