@@ -20,25 +20,19 @@ export const giveawayTexts: {
   },
 
   registered: {
-    subscribedTitle: <>Поздравляем, вы&nbsp;участвуете в&nbsp;розыгрыше!</>,
+    subscribedTitle: <>Супер, вы&nbsp;участвуете в&nbsp;розыгрыше</>,
     subscribedText: (
-      <>
-        Результаты опубликуем до&nbsp;NN.NN.NN в&nbsp;нашем{' '}
-        <a href={links.vk} target="_blank">
-          сообществе в&nbsp;VK
-        </a>
-        , а&nbsp;победителям напишем на&nbsp;почту
-      </>
+      <>До&nbsp;NN.NN.NN опубликуем результаты на&nbsp;этой странице и&nbsp;напишем победителям на&nbsp;почту</>
     ),
   },
 
   over: {
-    giveawayOverTitle: <>Розыгрыш путешествий кончился</>,
-    giveawayOverText: <>Подпишитесь на&nbsp;рассылки, чтобы не&nbsp;пропустить другие розыгрыши.</>,
+    giveawayOverTitle: <>Уже выбираем победителей</>,
+    giveawayOverText: <>Розыгрыш закончился. Результаты опубликуем до&nbsp;NN.NN.NN на&nbsp;этой странице</>,
   },
 
   winners: {
-    title: <>А&nbsp;розыгрыш закончился</>,
+    title: <>Розыгрыш уже&nbsp;прошёл</>,
     winnersTitle: 'Как выбирали победителя',
     winnersLinkText: 'Как выбирали победителя',
   },

@@ -3,8 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { Registration, useGiveaway } from '@kosyanmedia/devcom-spec-uikit/dist/collections'
 import { SmartCaptcha } from '@kosyanmedia/devcom-spec-uikit/dist/elements'
-import { EmailFormProps, SubscriptionsForm } from '@kosyanmedia/devcom-spec-uikit/dist/modules'
-import { SubscriptionProps } from '@kosyanmedia/devcom-spec-uikit/dist/modules/SubscriptionsForm/Subscription'
+import { EmailFormProps } from '@kosyanmedia/devcom-spec-uikit/dist/modules'
 
 import giveawayCatGray from '~/assets/images/giveawayCatGray.svg?url'
 import giveawayCatRed from '~/assets/images/giveawayCatRed.svg?url'
@@ -37,35 +36,11 @@ export const GiveawayDefault: React.FC = () => {
     }
   }, [deviceType])
 
-  const { state, networkError, aviasalesInfo, partnerInfo, handleRegister, handleShare } = useGiveaway({
+  const { state, networkError, handleRegister, handleShare } = useGiveaway({
     isDevelopment: process.env.NODE_ENV === 'development',
     captchaRef: captchaRef,
     subscriptionFormData: subscriptionFormData,
   })
-
-  // const [SubmitButtonTwin, setSubmitButtonTwin] = useState<React.ReactPortal | null>(null)
-  // useEffect(() => {
-  //   const emailFormElem = document.getElementsByClassName(classes.giveawayEmailForm)[0] as HTMLFormElement
-  //   if (!emailFormElem) return
-
-  //   setSubmitButtonTwin(() => {
-  //     if (!emailFormElem) return null
-  //     return createPortal(
-  //       <div className={classes.buttonTwinWrap}>
-  //         <Button
-  //           onClick={() => {
-  //             const realBtn = document.getElementsByClassName(classes.giveawayEmailFormButton)[0] as HTMLButtonElement
-  //             if (!realBtn) return
-  //             realBtn.click()
-  //           }}
-  //         >
-  //           Отправить
-  //         </Button>
-  //       </div>,
-  //       emailFormElem,
-  //     )
-  //   })
-  // }, [state.currentStep])
 
   // useEffect(() => {
   //   const submitButton = document.getElementsByClassName(classes.giveawayEmailFormButton)[0]
@@ -106,48 +81,7 @@ export const GiveawayDefault: React.FC = () => {
 
       {state.currentStep < 2 ? (
         // not registered
-        <div id="giveaway" className={classes.register}>
-          <div className={classes.registerBody}>
-            <div className={classes.title}>{giveawayTexts.registration.title}</div>
-            <div className={classes.text}>{giveawayTexts.registration.text}</div>
-          </div>
-
-          <div className={classes.wrap}>
-            <Registration
-              currentStep={state.currentStep}
-              emailFormData={
-                {
-                  ...emailFormData,
-                  onSubmit: handleRegister,
-                  disableCheckbox: true,
-                  classes: {
-                    className: classes.giveawayEmailForm,
-                    stepClassName: classes.giveawayStep,
-                    textClassName: classes.giveawayEmailFormText,
-                    inputClassName: classes.giveawayEmailFormInput,
-                    checkboxClassName: classes.giveawayEmailFormCheckbox,
-                    buttonClassName: classes.giveawayEmailFormButton,
-                  },
-                } as EmailFormProps
-              }
-              shareFormData={{
-                ...shareFormData,
-                onShare: handleShare,
-                classes: {
-                  className: classes.giveawayShareForm,
-                  stepClassName: classes.giveawayStep,
-                  titleClassName: classes.giveawayShareFormTitle,
-                  textClassName: classes.giveawayShareFormText,
-                  linkClassName: classes.giveawayShareFormLink,
-                  linksContainerClassName: classes.giveawayShareFormLinkContainer,
-                },
-              }}
-              // shouldSkipShareForm={shouldSkipShareForm}
-              networkError={networkError}
-            />
-            {/* {SubmitButtonTwin} */}
-          </div>
-
+        <>
           <div className={classes.partyRight}>
             <svg className={classes.partyRightBox} viewBox="0 0 349 157" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -171,52 +105,84 @@ export const GiveawayDefault: React.FC = () => {
               draggable="false"
             />
           </div>
-        </div>
+
+          <div id="giveaway" className={classes.register}>
+            <div className={classes.registerBody}>
+              <div className={classes.title}>{giveawayTexts.registration.title}</div>
+              <div className={classes.text}>{giveawayTexts.registration.text}</div>
+            </div>
+
+            <div className={classes.wrap}>
+              <Registration
+                currentStep={state.currentStep}
+                emailFormData={
+                  {
+                    ...emailFormData,
+                    onSubmit: handleRegister,
+                    disableCheckbox: true,
+                    classes: {
+                      className: classes.giveawayEmailForm,
+                      stepClassName: classes.giveawayStep,
+                      textClassName: classes.giveawayEmailFormText,
+                      inputClassName: classes.giveawayEmailFormInput,
+                      checkboxClassName: classes.giveawayEmailFormCheckbox,
+                      buttonClassName: classes.giveawayEmailFormButton,
+                    },
+                  } as EmailFormProps
+                }
+                shareFormData={{
+                  ...shareFormData,
+                  onShare: handleShare,
+                  classes: {
+                    className: classes.giveawayShareForm,
+                    stepClassName: classes.giveawayStep,
+                    titleClassName: classes.giveawayShareFormTitle,
+                    textClassName: classes.giveawayShareFormText,
+                    linkClassName: classes.giveawayShareFormLink,
+                    linksContainerClassName: classes.giveawayShareFormLinkContainer,
+                  },
+                }}
+                // shouldSkipShareForm={shouldSkipShareForm}
+                networkError={networkError}
+              />
+              {/* {SubmitButtonTwin} */}
+            </div>
+          </div>
+        </>
       ) : (
         // registered
-        <div id="giveaway" className={classes.registered}>
-          <div className={classes.registeredBody}>
-            <div className={classes.title}>{giveawayTexts.registered.subscribedTitle}</div>
-            <div className={classes.text}>{giveawayTexts.registered.subscribedText}</div>
+        <>
+          <div className={classNames(classes.partyRight, classes.partyRightRegistered)}>
+            <svg className={classes.partyRightBox} viewBox="0 0 349 157" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.5 84.4348C0.5 37.9085 38.217 0.191406 84.7433 0.191406H348.004V71.9896C348.004 118.516 310.287 156.233 263.76 156.233H0.5V84.4348Z"
+                fill="#00AFA7"
+              />
+            </svg>
+            <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
+            <img
+              className={classNames(classes.giveawayCatRed, isCatsTurned && classes.catTurned)}
+              src={giveawayCatRed}
+              alt=""
+              draggable="false"
+            />
+          </div>
+          <div className={classes.partyLeft}>
+            <img
+              className={classNames(classes.giveawayCatGray, isCatsTurned && classes.catTurned)}
+              src={giveawayCatGray}
+              alt=""
+              draggable="false"
+            />
           </div>
 
-          <SubscriptionsForm
-            title=""
-            text=""
-            aviasalesInfo={
-              {
-                ...aviasalesInfo,
-                title: '',
-                bulletPoints: ['asd'],
-                classes: {
-                  className: classes.subscriptionsFormSub,
-                  titleClassName: classes.subscriptionsFormTitle,
-                  bulletPointsClassName: classes.subscriptionsFormBulletPoints,
-                  buttonClassName: classes.subscriptionsFormButton,
-                  subscribedButtonClassName: classes.subscriptionsFormButtonDone,
-                },
-              } as SubscriptionProps
-            }
-            partnerInfo={
-              partnerInfo
-                ? ({
-                    ...partnerInfo,
-                    classes: {
-                      className: classes.subscriptionsFormSub,
-                      titleClassName: classes.subscriptionsFormTitle,
-                      bulletPointsClassName: classes.subscriptionsFormBulletPoints,
-                      buttonClassName: classes.subscriptionsFormButton,
-                      subscribedButtonClassName: classes.subscriptionsFormButtonDone,
-                    },
-                  } as SubscriptionProps)
-                : undefined
-            }
-            classes={{
-              className: classes.subscriptionsForm,
-              subscriptionsClassName: classes.subscriptionsFormSubs,
-            }}
-          />
-        </div>
+          <div id="giveaway" className={classes.registered}>
+            <div className={classes.registeredBody}>
+              <div className={classes.title}>{giveawayTexts.registered.subscribedTitle}</div>
+              <div className={classes.text}>{giveawayTexts.registered.subscribedText}</div>
+            </div>
+          </div>
+        </>
       )}
     </>
   ) : (
@@ -224,32 +190,90 @@ export const GiveawayDefault: React.FC = () => {
     <>
       {!winnersList.length ? (
         // no winners yet
-        <div id="giveaway" className={classes.registered}>
-          <div className={classes.title}>{giveawayTexts.over.giveawayOverTitle}</div>
-          <div className={classes.text}>{giveawayTexts.over.giveawayOverText}</div>
-        </div>
+        <>
+          <div className={classNames(classes.partyRight, classes.partyRightRegistered)}>
+            <svg className={classes.partyRightBox} viewBox="0 0 349 157" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.5 84.4348C0.5 37.9085 38.217 0.191406 84.7433 0.191406H348.004V71.9896C348.004 118.516 310.287 156.233 263.76 156.233H0.5V84.4348Z"
+                fill="#00AFA7"
+              />
+            </svg>
+            <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
+            <img
+              className={classNames(classes.giveawayCatRed, isCatsTurned && classes.catTurned)}
+              src={giveawayCatRed}
+              alt=""
+              draggable="false"
+            />
+          </div>
+          <div className={classes.partyLeft}>
+            <img
+              className={classNames(classes.giveawayCatGray, isCatsTurned && classes.catTurned)}
+              src={giveawayCatGray}
+              alt=""
+              draggable="false"
+            />
+          </div>
+
+          <div id="giveaway" className={classes.over}>
+            <div className={classes.registeredBody}>
+              <div className={classes.title}>{giveawayTexts.over.giveawayOverTitle}</div>
+              <div className={classes.text}>{giveawayTexts.over.giveawayOverText}</div>
+            </div>
+          </div>
+        </>
       ) : (
         // there are winners
-        <div id="giveaway" className={classes.winners}>
-          <div className={classes.title}>{giveawayTexts.winners.title}</div>
-          <div className={classes.winnersCard}>
-            <div className={classes.winnersTitle}>{giveawayTexts.winners.winnersTitle}</div>
-            <div className={classes.winnersList}>
-              {winnersList.map((winner: string) => (
-                <div key={winner} className={classes.winner}>
-                  {winner}
-                </div>
-              ))}
-            </div>
-            {winnersLink && (
-              <div className={classes.winnersActions}>
-                <a href={winnersLink} target="_blank">
-                  {giveawayTexts.winners.winnersLinkText}
-                </a>
-              </div>
-            )}
+        <>
+          <div className={classNames(classes.partyRight, classes.partyRightRegistered)}>
+            <svg className={classes.partyRightBox} viewBox="0 0 349 157" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.5 84.4348C0.5 37.9085 38.217 0.191406 84.7433 0.191406H348.004V71.9896C348.004 118.516 310.287 156.233 263.76 156.233H0.5V84.4348Z"
+                fill="#00AFA7"
+              />
+            </svg>
+            <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
+            <img
+              className={classNames(classes.giveawayCatRed, isCatsTurned && classes.catTurned)}
+              src={giveawayCatRed}
+              alt=""
+              draggable="false"
+            />
           </div>
-        </div>
+          <div className={classes.partyLeft}>
+            <img
+              className={classNames(classes.giveawayCatGray, isCatsTurned && classes.catTurned)}
+              src={giveawayCatGray}
+              alt=""
+              draggable="false"
+            />
+          </div>
+
+          <div id="giveaway" className={classes.winners}>
+            <div className={classes.registeredBody}>
+              <div className={classes.title}>{giveawayTexts.winners.title}</div>
+              <div className={classes.winnersCard}>
+                <div className={classes.winnersTitle}>
+                  Призы{' '}
+                  {winnersLink ? (
+                    <a href={winnersLink} target="_blank">
+                      достались
+                    </a>
+                  ) : (
+                    'достались'
+                  )}
+                </div>
+                <div className={classes.winnersList}>
+                  {winnersList.map((winner: string) => (
+                    <div key={winner} className={classes.winner}>
+                      {winner}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </>
   )

@@ -33,6 +33,8 @@ $contentPaddingMob: 20;
 }
 
 .register {
+  position: relative;
+
   @include desktop {
     display: grid;
     grid-template-columns: 1fr dpx($contentWidth);
@@ -541,127 +543,63 @@ button.giveawayShareFormLink {
 //   }
 // }
 
-// SubscriptionsForm
-.subscriptionsForm {
-  gap: 0 !important;
-
-  @include mobile {
-    padding: 0;
-  }
-}
-
-.subscriptionsFormSubs {
+//
+.partyRightRegistered {
   @include desktop {
-    gap: dpx(16);
-    grid-template-columns: 1fr 1fr;
-  }
+    left: dpx(994);
+    bottom: dpx(29);
 
-  @include mobile {
-    gap: mpx(16);
-    grid-template-columns: 100%;
-  }
-}
-
-.subscriptionsFormSub {
-  justify-content: space-between;
-  background: #fff;
-
-  @include desktop {
-    gap: dpx(12);
-    padding: dpx(16);
-  }
-
-  @include mobile {
-    gap: mpx(12);
-    padding: mpx(16);
-    border-radius: mpx(16);
-  }
-}
-
-.subscriptionsFormTitle p {
-  @include desktop {
-    font-size: dpx(20) !important;
-  }
-
-  @include mobile {
-    font-size: mpx(20) !important;
-  }
-}
-
-.subscriptionsFormBulletPoints {
-  @include desktop {
-    gap: dpx(6);
-  }
-
-  @include mobile {
-    gap: mpx(6);
-  }
-
-  // li::before
-  //   display: none
-
-  li {
-    letter-spacing: normal;
-
-    @include desktop {
-      font-size: dpx(14) !important;
+    .partyRightBox {
+      width: dpx(423);
+      height: dpx(190);
     }
 
-    @include mobile {
-      font-size: mpx(14) !important;
+    .loaderStarBig {
+      left: dpx(269.33);
+      bottom: dpx(314.41);
+      width: dpx(221.08);
+      height: dpx(221.08);
+    }
+
+    .giveawayCatRed {
+      left: dpx(50.59);
+      bottom: dpx(151.99);
+      width: dpx(292.5);
+      height: dpx(356.85);
     }
   }
 }
 
-.subscriptionsFormButton {
-  font-weight: 600;
-  line-height: normal;
+.registered {
+  position: relative;
+}
 
+.registeredBody {
   @include desktop {
-    padding: dpx(8 10);
-    font-size: dpx(14);
-    cursor: pointer;
-  }
-
-  @include mobile {
-    padding: mpx(6 10 7);
-    font-size: mpx(14);
-    border-radius: mpx(8);
+    width: dpx(527);
+    margin: auto;
+    padding-top: dpx(121 - 68);
+    text-align: center;
   }
 }
-
-.subscriptionsFormButtonDone {
-  cursor: default !important;
-  pointer-events: none !important;
-  opacity: 0.6 !important;
-}
-
-// .subscriptionsFormSub:last-child
-//   .subscriptionsFormBulletPoints
-//     li::before
-//       color: #4BD0A0
-//   .subscriptionsFormButton
-//     background: #4BD0A0
-//     +desktop
-//       &:hover,
-//       &:active
-//         background: #4BD0A0cc
-//     +mobile
-//       background: #4BD0A0
 
 // winners
 .winnersTitle {
-  font-weight: 700;
-  line-height: normal;
+  line-height: 140%;
 
   @include desktop {
-    margin-bottom: dpx(12);
-    font-size: dpx(20);
+    margin: dpx(20 0 40);
+    font-size: dpx(28);
   }
 
   @include mobile {
     margin-bottom: mpx(12);
     font-size: mpx(20);
+  }
+
+  a {
+    color: #00afa7;
+    text-decoration: none;
   }
 }
 
@@ -672,38 +610,28 @@ button.giveawayShareFormLink {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: dpx(4);
-    margin-bottom: dpx(12);
+    gap: dpx(8);
   }
 
   @include mobile {
     flex-direction: column;
     align-items: flex-start;
     gap: mpx(4);
-    margin-bottom: mpx(12);
   }
 }
 
 .winner {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(231, 195, 125, 0.4);
 
   @include desktop {
-    padding: dpx(8 12);
+    padding: dpx(14 32);
     border-radius: dpx(8);
-    font-size: dpx(20);
+    font-size: dpx(16);
   }
 
   @include mobile {
     padding: mpx(8 12);
     border-radius: mpx(8);
     font-size: mpx(20);
-  }
-}
-
-.winnersActions {
-  a {
-    color: #0c73fe;
-    font-weight: 400;
-    text-decoration: none;
   }
 }
