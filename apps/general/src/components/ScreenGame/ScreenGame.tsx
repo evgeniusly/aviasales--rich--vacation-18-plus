@@ -89,47 +89,49 @@ export const ScreenGame: React.FC = () => {
         <div className={classes.mainBgLeft}></div>
         <div className={classes.mainBgRight}></div>
 
-        <ProgressBar progress={curStep / stepsTotal} value={`${curStep} / ${stepsTotal}`} />
+        <div className={classes.mainContent}>
+          <ProgressBar progress={curStep / stepsTotal} value={`${curStep} / ${stepsTotal}`} />
 
-        <div className={classes.title}>Как выглядит отдых по-взрослому?</div>
-        <div className={classes.subTitle}>Выберите один из&nbsp;двух вариантов</div>
+          <div className={classes.title}>Как выглядит отдых по-взрослому?</div>
+          <div className={classes.subTitle}>Выберите один из&nbsp;двух вариантов</div>
 
-        <div className={classes.selector}>
-          {leftCard && (
-            <div
-              className={classNames(
-                classes.cardWrap,
-                classes.cardLeft,
-                isLeftSelected && classes.cardSelected,
-                isRightSelected && classes.cardHidden,
-              )}
-            >
-              <div className={classes.cardBody} onClick={() => void onCardSelect(true, leftCard[0])}>
-                <div className={classes.cardImgWrap}>
-                  <img className={classes.cardImg} src={leftCard[1].img} alt="" draggable="false" />
+          <div className={classes.selector}>
+            {leftCard && (
+              <div
+                className={classNames(
+                  classes.cardWrap,
+                  classes.cardLeft,
+                  isLeftSelected && classes.cardSelected,
+                  isRightSelected && classes.cardHidden,
+                )}
+              >
+                <div className={classes.cardBody} onClick={() => void onCardSelect(true, leftCard[0])}>
+                  <div className={classes.cardImgWrap}>
+                    <img className={classes.cardImg} src={leftCard[1].img} alt="" draggable="false" />
+                  </div>
+                  <div className={classes.cardTitle}>{leftCard[1].title}</div>
                 </div>
-                <div className={classes.cardTitle}>{leftCard[1].title}</div>
               </div>
-            </div>
-          )}
+            )}
 
-          {rightCard && (
-            <div
-              className={classNames(
-                classes.cardWrap,
-                classes.cardRight,
-                isRightSelected && classes.cardSelected,
-                isLeftSelected && classes.cardHidden,
-              )}
-            >
-              <div className={classes.cardBody} onClick={() => void onCardSelect(false, rightCard[0])}>
-                <div className={classes.cardImgWrap}>
-                  <img className={classes.cardImg} src={rightCard[1].img} alt="" draggable="false" />
+            {rightCard && (
+              <div
+                className={classNames(
+                  classes.cardWrap,
+                  classes.cardRight,
+                  isRightSelected && classes.cardSelected,
+                  isLeftSelected && classes.cardHidden,
+                )}
+              >
+                <div className={classes.cardBody} onClick={() => void onCardSelect(false, rightCard[0])}>
+                  <div className={classes.cardImgWrap}>
+                    <img className={classes.cardImg} src={rightCard[1].img} alt="" draggable="false" />
+                  </div>
+                  <div className={classes.cardTitle}>{rightCard[1].title}</div>
                 </div>
-                <div className={classes.cardTitle}>{rightCard[1].title}</div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
 

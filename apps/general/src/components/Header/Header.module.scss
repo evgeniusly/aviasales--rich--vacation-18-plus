@@ -59,8 +59,8 @@
   display: block;
 
   @include desktop {
-    width: dpx(134.05);
-    height: dpx(28);
+    width: dpx(134.4);
+    height: dpx(28.07);
   }
 
   @include mobile {
@@ -73,7 +73,7 @@
   display: block;
 
   @include desktop {
-    width: dpx(78);
+    width: dpx(64);
     height: dpx(28);
   }
 

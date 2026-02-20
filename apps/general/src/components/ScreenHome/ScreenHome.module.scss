@@ -1,3 +1,9 @@
+@keyframes fadeInAnim {
+  100% {
+    opacity: 1;
+  }
+}
+
 .home {
   display: flex;
   flex-direction: column;
@@ -75,18 +81,29 @@
 }
 
 .titleMain {
+  overflow: hidden;
+
   @include desktop {
     grid-column: span 3 / span 3;
     border-bottom: dpx(2) solid #002d50;
   }
 }
 
+@keyframes titleItemAnim {
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
 .titleMainContent {
   color: #002d50;
   font-family: 'Bebas Neue', 'Inter', sans-serif;
   font-weight: 700;
   line-height: 90%;
   text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: titleItemAnim 0.6s ease-in-out forwards;
 
   @include desktop {
     margin-top: dpx(16);
@@ -99,8 +116,15 @@
   }
 }
 
+.titleGlass {
+  overflow: hidden;
+}
+
 .glass {
   display: block;
+  opacity: 0;
+  transform: translateY(-100%);
+  animation: titleItemAnim 0.6s ease-in-out 0.2s forwards;
 
   @include desktop {
     width: dpx(176);
@@ -109,6 +133,8 @@
 }
 
 .titleSec {
+  overflow: hidden;
+
   @include desktop {
     border-left: dpx(2) solid #002d50;
     border-right: dpx(2) solid #002d50;
@@ -121,6 +147,9 @@
   font-weight: 700;
   line-height: 90%;
   text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(-100%);
+  animation: titleItemAnim 0.6s ease-in-out 0.4s forwards;
 
   @include desktop {
     margin-top: dpx(16);
@@ -129,10 +158,17 @@
   }
 }
 
+.titleCircles {
+  overflow: hidden;
+}
+
 .homeCircles {
   @include desktop {
     width: dpx(85);
     height: dpx(203);
+    opacity: 0;
+    transform: translateY(-100%);
+    animation: titleItemAnim 0.6s ease-in-out 0.6s forwards;
   }
 }
 
@@ -144,6 +180,8 @@
     width: dpx(698);
     margin: 0 auto dpx(48);
     font-size: dpx(24);
+    opacity: 0;
+    animation: fadeInAnim 0.4s ease-in-out 0.8s forwards;
   }
 
   @include mobile {
@@ -159,6 +197,8 @@
     gap: dpx(24);
     width: dpx(376);
     margin: auto;
+    opacity: 0;
+    animation: fadeInAnim 0.4s ease-in-out 0.8s forwards;
   }
 
   @include mobile {
@@ -192,6 +232,8 @@
   @include desktop {
     display: grid;
     align-items: center;
+    opacity: 0;
+    animation: fadeInAnim 0.8s ease-in-out 0.2s forwards;
   }
 }
 

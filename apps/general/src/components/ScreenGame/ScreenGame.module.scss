@@ -78,6 +78,19 @@
   pointer-events: none;
 }
 
+@keyframes mainContentAnim {
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+.mainContent {
+  position: relative;
+  opacity: 0;
+  transform: translateY(-2vh);
+  animation: mainContentAnim 0.6s ease-in-out 0.2s forwards;
+}
+
 .title {
   font-weight: 700;
   line-height: 130%;
