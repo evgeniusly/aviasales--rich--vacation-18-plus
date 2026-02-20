@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { getAnswerStat } from '~/api/result'
 import giveawayCircles from '~/assets/images/giveawayCircles.svg?url'
+import giveawayHalfCircles from '~/assets/images/giveawayHalfCircles.svg?url'
 import giveawayLeftText from '~/assets/images/giveawayLeftText.svg?url'
 import glass from '~/assets/images/glass.svg?url'
 import promoBage from '~/assets/images/promoBage.svg?url'
@@ -34,7 +35,11 @@ export const ScreenResults: React.FC = () => {
   const [resultPercValue, setResultPercValue] = useState('')
 
   const [resultData, restartBtnText, isTestedLocal] = useMemo(() => {
-    return [isTested && resultId ? cards[resultId] : undefined, isTested ? 'Передумать' : 'Передумать', isTested]
+    return [
+      isTested && resultId ? cards[resultId] : undefined, //
+      isTested ? 'Передумать' : 'Передумать',
+      isTested,
+    ]
   }, []) // do not subscribe this !
 
   useEffect(() => {
@@ -144,6 +149,8 @@ export const ScreenResults: React.FC = () => {
       </div>
 
       <div className={classes.bottom}>
+        <img className={classes.giveawayHalfCircles} src={giveawayHalfCircles} alt="" draggable="false" />
+
         <div className={classNames(classes.bottomContent, classes.content)}>
           <div className={classes.resultLeft}>
             <img className={classes.giveawayLeftText} src={giveawayLeftText} alt="" draggable="false" />{' '}
@@ -152,6 +159,7 @@ export const ScreenResults: React.FC = () => {
             <img className={classes.giveawayCircles} src={giveawayCircles} alt="" draggable="false" />
             <div className={classes.bottomRightTop}></div>
           </div>
+
           <GiveawayDefault />
         </div>
       </div>

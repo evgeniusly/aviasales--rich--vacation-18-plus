@@ -15,8 +15,8 @@ export const giveawayTexts: {
   winners: Pick<GiveawayProps, 'winnersTitle' | 'winnersLinkText'> & { title: React.ReactNode }
 } = {
   registration: {
-    title: <>Осталось выиграть билеты</>,
-    text: <>Мы&nbsp;как раз разыгрываем два путешествия до&nbsp;70&nbsp;000&nbsp;₽</>,
+    title: <>Недетский розыгрыш</>,
+    text: <>Дарим двум участникам 50&nbsp;000&nbsp;₽ баллами на&nbsp;авиабилеты</>,
   },
 
   registered: {
@@ -46,29 +46,33 @@ export const giveawayTexts: {
 
 export const emailFormData: Omit<EmailFormProps, 'onSubmit'> = {
   title: 'Оставьте почту',
-  text: 'Чтобы мы поздравили лично',
+  text: 'На неё напишем, если выиграете',
   emailErrorText: 'Похоже, в адрес почты закралась ошибка',
   userDataText: (
     <>
-      Соглашаюсь{' '}
+      Отправляя почту, вы&nbsp;соглашаетесь с&nbsp;
       <a href={links.rules} target="_blank">
-        с&nbsp;правилами акции
+        правилами акции
+      </a>{' '}
+      и&nbsp;
+      <a href={links.privacy} target="_blank">
+        политикой конфиденциальности
       </a>
     </>
   ),
-  checkboxes: [
-    <>
-      Соглашаюсь c&nbsp;
-      <a href={links.privacy} target="_blank">
-        обработкой пользовательских данных
-      </a>
-    </>,
-  ],
+  // checkboxes: [
+  //   <>
+  //     Соглашаюсь c&nbsp;
+  //     <a href={links.privacy} target="_blank">
+  //       обработкой пользовательских данных
+  //     </a>
+  //   </>,
+  // ],
 }
 
 export const shareFormData: Omit<ShareFormProps, 'onShare'> = {
   title: 'Поделитесь с друзьями',
-  text: 'Вдруг сможете полететь вместе',
+  text: 'Если они тоже взрослые',
   linksInfo: [
     {
       [SharingType.Vk]: {

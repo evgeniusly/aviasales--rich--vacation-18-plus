@@ -1,10 +1,14 @@
-import React, { useRef } from 'react'
+import classNames from 'classnames'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { Registration, useGiveaway } from '@kosyanmedia/devcom-spec-uikit/dist/collections'
 import { SmartCaptcha } from '@kosyanmedia/devcom-spec-uikit/dist/elements'
-import { SubscriptionsForm } from '@kosyanmedia/devcom-spec-uikit/dist/modules'
+import { EmailFormProps, SubscriptionsForm } from '@kosyanmedia/devcom-spec-uikit/dist/modules'
 import { SubscriptionProps } from '@kosyanmedia/devcom-spec-uikit/dist/modules/SubscriptionsForm/Subscription'
 
+import giveawayCatGray from '~/assets/images/giveawayCatGray.svg?url'
+import giveawayCatRed from '~/assets/images/giveawayCatRed.svg?url'
+import loaderStarBig from '~/assets/images/loaderStarBig.svg?url'
 import { emailFormData, giveawayTexts, shareFormData, subscriptionFormData } from '~/data'
 import { winnersLink, winnersList } from '~/defs'
 import { useAppStore } from '~/store/appStore'
@@ -13,21 +17,30 @@ import classes from './GiveawayDefault.module.scss'
 
 export const GiveawayDefault: React.FC = () => {
   const isDeadlined = useAppStore((state) => state.isDeadlined)
+  const deviceType = useAppStore((state) => state.deviceType)
 
   const captchaRef = useRef<{ value: string | null }>(null)
-  // const altchaRef = useRef<{ value: string | null }>(null)
 
-  // Giveaway statuses from GiveawayContext
-  // const { email, hasShared, isSubscribedAviasales, isSubscribedPartner } = useContext(GiveawayContext)
+  const [isCatsTurned, setIsCatsTurned] = useState(false)
+
+  useEffect(() => {
+    if (deviceType !== 'desktop') return
+
+    const onMouseMove = (e: MouseEvent): void => {
+      if (Math.abs(e.movementX) < 4) return
+      setIsCatsTurned(e.movementX > 0)
+      // setIsCatsTurned(e.clientX > document.body.clientWidth * 0.6)
+    }
+    document.addEventListener('mousemove', onMouseMove)
+    return (): void => {
+      document.removeEventListener('mousemove', onMouseMove)
+    }
+  }, [deviceType])
 
   const { state, networkError, aviasalesInfo, partnerInfo, handleRegister, handleShare } = useGiveaway({
     isDevelopment: process.env.NODE_ENV === 'development',
     captchaRef: captchaRef,
     subscriptionFormData: subscriptionFormData,
-    // shouldSkipShareForm: false,
-    // shouldControlSubscriptions: false,
-    // onRegister: process.env.NODE_ENV === 'development' ? (): Promise<void> => Promise.resolve() : undefined,
-    // altchaRef: process.env.NODE_ENV === 'development' ? undefined : altchaRef,
   })
 
   // const [SubmitButtonTwin, setSubmitButtonTwin] = useState<React.ReactPortal | null>(null)
@@ -53,25 +66,6 @@ export const GiveawayDefault: React.FC = () => {
   //     )
   //   })
   // }, [state.currentStep])
-
-  // send status on update
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     const event = new CustomEvent('giveawayStatus', { detail: state.currentStep })
-  //     window.dispatchEvent(event)
-  //   }, 200) // on mount fix
-  // }, [state])
-
-  // USAGE
-  // useEffect(() => {
-  //   const onGiveawayStatus = (e: CustomEventInit<number>): void => {
-  //     if (e.detail) setGiveawayState(e.detail)
-  //   }
-  //   window.addEventListener('giveawayStatus', onGiveawayStatus)
-  //   return (): void => {
-  //     window.removeEventListener('giveawayStatus', onGiveawayStatus)
-  //   }
-  // }, [])
 
   // useEffect(() => {
   //   const submitButton = document.getElementsByClassName(classes.giveawayEmailFormButton)[0]
@@ -109,7 +103,6 @@ export const GiveawayDefault: React.FC = () => {
       {process.env.NODE_ENV !== 'development' && (
         <SmartCaptcha ref={captchaRef} siteKey={process.env.MODERN__SMART_CAPTCHA__SITE_KEY || ''} />
       )}
-      {/* {process.env.NODE_ENV !== 'development' && <Altcha ref={altchaRef} />} */}
 
       {state.currentStep < 2 ? (
         // not registered
@@ -122,18 +115,21 @@ export const GiveawayDefault: React.FC = () => {
           <div className={classes.wrap}>
             <Registration
               currentStep={state.currentStep}
-              emailFormData={{
-                ...emailFormData,
-                onSubmit: handleRegister,
-                classes: {
-                  className: classes.giveawayEmailForm,
-                  stepClassName: classes.giveawayStep,
-                  textClassName: classes.giveawayEmailFormText,
-                  inputClassName: classes.giveawayEmailFormInput,
-                  checkboxClassName: classes.giveawayEmailFormCheckbox,
-                  buttonClassName: classes.giveawayEmailFormButton,
-                },
-              }}
+              emailFormData={
+                {
+                  ...emailFormData,
+                  onSubmit: handleRegister,
+                  disableCheckbox: true,
+                  classes: {
+                    className: classes.giveawayEmailForm,
+                    stepClassName: classes.giveawayStep,
+                    textClassName: classes.giveawayEmailFormText,
+                    inputClassName: classes.giveawayEmailFormInput,
+                    checkboxClassName: classes.giveawayEmailFormCheckbox,
+                    buttonClassName: classes.giveawayEmailFormButton,
+                  },
+                } as EmailFormProps
+              }
               shareFormData={{
                 ...shareFormData,
                 onShare: handleShare,
@@ -150,6 +146,30 @@ export const GiveawayDefault: React.FC = () => {
               networkError={networkError}
             />
             {/* {SubmitButtonTwin} */}
+          </div>
+
+          <div className={classes.partyRight}>
+            <svg className={classes.partyRightBox} viewBox="0 0 349 157" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.5 84.4348C0.5 37.9085 38.217 0.191406 84.7433 0.191406H348.004V71.9896C348.004 118.516 310.287 156.233 263.76 156.233H0.5V84.4348Z"
+                fill="#00AFA7"
+              />
+            </svg>
+            <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
+            <img
+              className={classNames(classes.giveawayCatRed, isCatsTurned && classes.catTurned)}
+              src={giveawayCatRed}
+              alt=""
+              draggable="false"
+            />
+          </div>
+          <div className={classes.partyLeft}>
+            <img
+              className={classNames(classes.giveawayCatGray, isCatsTurned && classes.catTurned)}
+              src={giveawayCatGray}
+              alt=""
+              draggable="false"
+            />
           </div>
         </div>
       ) : (

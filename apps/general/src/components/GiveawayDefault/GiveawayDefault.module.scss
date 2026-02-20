@@ -1,12 +1,18 @@
 @import '../Button/Button.module';
 
-$contentWidth: 403;
+$contentWidth: 480;
 $contentWidthMob: 375;
 $contentPaddingMob: 20;
 
 .title {
+  color: #002d50;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 100%;
+
   @include desktop {
-    margin-bottom: dpx(24);
+    margin-bottom: dpx(16);
+    font-size: dpx(80);
   }
 
   @include mobile {
@@ -15,8 +21,10 @@ $contentPaddingMob: 20;
 }
 
 .text {
+  line-height: 140%;
+
   @include desktop {
-    margin-bottom: dpx(22);
+    font-size: dpx(28);
   }
 
   @include mobile {
@@ -27,11 +35,103 @@ $contentPaddingMob: 20;
 .register {
   @include desktop {
     display: grid;
-    justify-content: center;
-    align-items: center;
     grid-template-columns: 1fr dpx($contentWidth);
     gap: dpx(40);
     margin: auto;
+    padding-right: dpx(64);
+  }
+}
+
+.registerBody {
+  .text {
+    @include desktop {
+      width: dpx(562);
+    }
+  }
+}
+
+//
+.partyLeft {
+  @include desktop {
+    position: absolute;
+    left: dpx(127);
+    bottom: dpx(54.87);
+    perspective: 500px;
+  }
+}
+
+.giveawayCatGray {
+  @include desktop {
+    display: block;
+    position: absolute;
+    left: dpx(0);
+    bottom: dpx(0);
+    width: dpx(241.24);
+    height: dpx(423.13);
+    transition: transform 0.12s ease-in-out;
+    will-change: transform;
+  }
+}
+
+.partyRight {
+  @include desktop {
+    position: absolute;
+    left: dpx(326);
+    bottom: dpx(40);
+    perspective: 500px;
+  }
+}
+
+.partyRightBox {
+  @include desktop {
+    position: absolute;
+    left: dpx(0);
+    bottom: dpx(0);
+    width: dpx(349);
+    height: dpx(157);
+  }
+}
+
+@keyframes loaderStarBigAnim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loaderStarBig {
+  @include desktop {
+    display: block;
+    position: absolute;
+    left: dpx(222.59);
+    bottom: dpx(260.11);
+    width: dpx(181.89);
+    height: dpx(181.89);
+    animation: loaderStarBigAnim 30s linear infinite;
+  }
+}
+
+.giveawayCatRed {
+  @include desktop {
+    display: block;
+    position: absolute;
+    left: dpx(42);
+    bottom: dpx(126);
+    width: dpx(242);
+    height: dpx(295);
+    transform-origin: 62% 50%;
+    transition: transform 0.2s ease-in-out;
+    will-change: transform;
+  }
+}
+
+.catTurned {
+  @include desktop {
+    transform: rotateY(-180deg);
+    &.giveawayCatGray {
+      transform: rotateY(180deg);
+    }
   }
 }
 
@@ -44,7 +144,7 @@ $contentPaddingMob: 20;
 
   @include desktop {
     width: dpx($contentWidth);
-    min-height: dpx(296);
+    min-height: dpx(526);
   }
 
   @include mobile {
@@ -69,27 +169,46 @@ $contentPaddingMob: 20;
   }
 }
 
-.giveawayStep p {
-  color: #9ea9b7;
+.giveawayStep {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
 
-  @include mobile {
-    font-size: mpx(18) !important;
+  @include desktop {
+    width: dpx(128);
+    height: dpx(50);
+    border-left: dpx(2) solid var(--Deep-Blue, #002d50);
+    border-bottom: dpx(2) solid var(--Deep-Blue, #002d50);
+    border-radius: dpx(0 48);
+  }
+
+  p {
+    color: #000000;
+    font-weight: 400;
+
+    @include mobile {
+      font-size: mpx(24) !important;
+    }
   }
 }
 
 .giveawayEmailFormText {
   @include desktop {
-    gap: dpx(12);
+    gap: dpx(0);
   }
 }
 
 .giveawayEmailFormText h2,
 .giveawayShareFormTitle {
-  font-weight: 500;
-  line-height: 100%;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  font-weight: 700;
 
   @include desktop {
-    font-size: dpx(26) !important;
+    font-size: dpx(40) !important;
+    line-height: dpx(48);
   }
 
   @include mobile {
@@ -100,7 +219,7 @@ $contentPaddingMob: 20;
 .giveawayEmailFormText p,
 .giveawayShareFormText {
   @include desktop {
-    font-size: dpx(16) !important;
+    font-size: dpx(20) !important;
   }
 
   @include mobile {
@@ -114,7 +233,9 @@ $contentPaddingMob: 20;
   transition-property: left, top, transform, opacity;
 
   @include desktop {
-    border-radius: dpx(16);
+    padding: dpx(66 40 40);
+    border: dpx(2) solid var(--Deep-Blue, #002d50);
+    border-radius: dpx(48);
   }
 
   @include mobile {
@@ -127,9 +248,10 @@ $contentPaddingMob: 20;
 // giveawayEmailForm
 .giveawayEmailForm {
   @include desktop {
-    gap: dpx(20);
+    gap: dpx(24);
+    top: 0;
     width: dpx($contentWidth);
-    padding: dpx(24);
+    opacity: 0;
   }
 
   @include mobile {
@@ -139,6 +261,10 @@ $contentPaddingMob: 20;
   }
 
   &[class*='_emailActive'] {
+    @include desktop {
+      top: dpx(58);
+      opacity: 1;
+    }
     @include mobile {
       transform: translateX(0);
     }
@@ -153,9 +279,10 @@ $contentPaddingMob: 20;
   background: #fff;
 
   @include desktop {
-    font-size: dpx(16);
-    border-radius: dpx(8);
-    padding: dpx(17 19);
+    font-size: dpx(20);
+    padding: dpx(24 30);
+    border: dpx(2) solid var(--Deep-Blue, #002d50);
+    border-radius: dpx(64);
   }
 
   @include mobile {
@@ -203,6 +330,7 @@ $contentPaddingMob: 20;
 
 .giveawayEmailFormCheckbox {
   margin: 0;
+  order: 2;
 
   @include desktop {
     gap: dpx(12);
@@ -276,14 +404,16 @@ $contentPaddingMob: 20;
 }
 
 .giveawayEmailFormButton {
-  --button-font-color: #fff;
-  --button-font-color-hover: #fff;
-  --button-font-color-active: #fff;
-  --button-background-color: #000;
-  --button-background-color-hover: color-mix(in srgb, var(--button-background-color), white 20%);
-  --button-background-color-active: color-mix(in srgb, var(--button-background-color), white 40%);
+  --button-font-color: #ffffff;
+  --button-font-color-hover: #ffffff;
+  --button-font-color-active: #ffffff;
+  --button-background-color: #e9511d;
+  --button-background-color-hover: #cc3400;
+  --button-background-color-active: #cc3400;
 
   @include button;
+
+  order: 1;
 
   @include mobile {
     &:hover {
@@ -302,8 +432,8 @@ $contentPaddingMob: 20;
   @include desktop {
     gap: dpx(20);
     width: dpx($contentWidth);
-    padding: dpx(24);
-    left: dpx(67);
+    left: dpx(48);
+    top: 0;
   }
 
   @include mobile {
@@ -315,6 +445,7 @@ $contentPaddingMob: 20;
   &[class*='_shareActive'] {
     @include desktop {
       left: 0;
+      top: dpx(58);
     }
 
     @include mobile {
@@ -325,7 +456,7 @@ $contentPaddingMob: 20;
 
 .giveawayShareFormLinkContainer {
   @include desktop {
-    gap: dpx(24);
+    gap: dpx(16);
   }
 
   @include mobile {
@@ -352,6 +483,10 @@ $contentPaddingMob: 20;
 
   svg {
     overflow: visible;
+
+    rect {
+      fill: #002d50;
+    }
   }
 }
 

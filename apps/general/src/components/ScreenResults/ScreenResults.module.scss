@@ -366,6 +366,19 @@
 }
 
 //
+.giveawayHalfCircles {
+  @include desktop {
+    display: block;
+    position: absolute;
+    left: dpx(197);
+    right: dpx(1388);
+    bottom: dpx(40);
+    width: dpx(334);
+    height: dpx(335);
+    margin: auto;
+  }
+}
+
 .giveawayLeftText {
   @include desktop {
     display: block;
@@ -405,5 +418,11 @@
   @include desktop {
     display: grid;
     min-height: dpx(744);
+  }
+}
+
+.bottomContent {
+  @include desktop {
+    padding-top: dpx(68);
   }
 }
