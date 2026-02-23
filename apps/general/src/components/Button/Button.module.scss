@@ -4,6 +4,7 @@
   align-items: center;
   align-self: flex-start;
   flex: 0 0 auto;
+  position: relative;
   color: var(--button-font-color);
   font-weight: 600;
   text-decoration: none;
@@ -15,20 +16,28 @@
 
   @include desktop {
     gap: dpx(32);
-    padding: dpx(16 24);
-    height: dpx(82);
+    padding: dpxRound(16 24);
+    height: dpxRound(82);
     font-size: dpx(26);
-    border-radius: dpx(64);
     cursor: pointer;
 
     &:hover {
       color: var(--button-font-color-hover);
       background: var(--button-background-color-hover);
       text-decoration: none;
+
+      .outline {
+        border-color: #e9511d;
+      }
     }
     &:active {
       color: var(--button-font-color-active);
       background: var(--button-background-color-active);
+
+      transform: scale(0.95);
+      .outline {
+        transform: scale(1.05);
+      }
     }
   }
 
@@ -38,7 +47,16 @@
     height: mpx(52);
     padding: mpx(16 40);
     font-size: mpx(16);
-    border-radius: mpx(16);
+  }
+
+  &,
+  & .glowWrap {
+    @include desktop {
+      border-radius: dpx(64);
+    }
+    @include mobile {
+      border-radius: mpx(16);
+    }
   }
 }
 
@@ -53,9 +71,27 @@ a.button {
   @include button;
 }
 
+.outline {
+  position: absolute;
+
+  @include desktop {
+    left: dpxRound(-8);
+    top: dpxRound(-8);
+    right: dpxRound(-8);
+    bottom: dpxRound(-8);
+    border: dpx(2) solid #002d50;
+    border-radius: dpx(56);
+    transition: var(--transition-main);
+    transition-property: border;
+  }
+}
+
+.children {
+  position: relative;
+}
+
 .buttonGlow {
   position: relative;
-  overflow: hidden;
 }
 
 @keyframes glowAnim {
@@ -63,6 +99,15 @@ a.button {
   100% {
     transform: translateX(100%);
   }
+}
+
+.glowWrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .glow {
@@ -91,4 +136,12 @@ a.blue {
   --button-background-color: #002d50;
   --button-background-color-hover: #000;
   --button-background-color-active: #000;
+
+  @include desktop {
+    &:hover {
+      .outline {
+        border-color: #000;
+      }
+    }
+  }
 }

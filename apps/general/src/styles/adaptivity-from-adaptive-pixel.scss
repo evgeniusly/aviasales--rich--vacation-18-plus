@@ -8,6 +8,9 @@
 @function dpx($px, $factor: 1920) {
   @return apx($px);
 }
+@function dpxRound($px, $factor: 1920) {
+  @return calc(sign(#{$px}) * max(abs(round(to-zero, #{apx($px)}, 1px)), 1px));
+}
 
 @function mpx($px, $factor: 375) {
   @return apx($px);

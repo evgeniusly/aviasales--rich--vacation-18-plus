@@ -65,7 +65,7 @@ export const ScreenHome: React.FC = () => {
             </div>
 
             <div className={classes.actions}>
-              <Button glow onClick={gotoGame}>
+              <Button glow outline onClick={gotoGame}>
                 Пройти опрос
               </Button>
               <button
