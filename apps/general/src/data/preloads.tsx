@@ -6,6 +6,7 @@ import homeBall from '~/assets/images/homeBall.png'
 import homeCats from '~/assets/images/homeCats.png'
 import homeCircles from '~/assets/images/homeCircles.svg?url'
 import homeMan from '~/assets/images/homeMan.png'
+import homeMob from '~/assets/images/homeMob.png'
 import homeStars from '~/assets/images/homeStars.png'
 import partyBack from '~/assets/images/partyBack.svg?url'
 import partyCircles from '~/assets/images/partyCircles.svg?url'
@@ -17,9 +18,9 @@ export const preloads = {
   preAppDesk: [],
   preAppMob: [],
 
-  preHome: [glass, homeBall, homeMan, homeStars],
-  preHomeDesk: [homeCats, homeCircles, partyBack, partyCircles],
-  preHomeMob: [],
+  preHome: [glass],
+  preHomeDesk: [homeCats, homeCircles, partyBack, partyCircles, homeBall, homeMan, homeStars],
+  preHomeMob: [homeMob],
 
   preGame: [...Object.values(cards).map(({ img }) => img)],
   preGameDesk: [],
