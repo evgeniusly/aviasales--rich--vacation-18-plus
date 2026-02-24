@@ -2,7 +2,7 @@ import { getPath } from '../../../defs/utils'
 
 export const meta = {
   url: getPath(),
-  siteName: 'siteName',
-  title: 'Title',
-  description: 'description',
+  siteName: 'Отпуск 18+',
+  title: 'Как выглядит отдых по-взрослому?',
+  description: 'Выберите вариант для себя и поучаствуйте в розыгрыше путешествий',
 }
