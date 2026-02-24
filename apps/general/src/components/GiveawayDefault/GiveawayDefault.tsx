@@ -17,6 +17,7 @@ import classes from './GiveawayDefault.module.scss'
 export const GiveawayDefault: React.FC = () => {
   const isDeadlined = useAppStore((state) => state.isDeadlined)
   const deviceType = useAppStore((state) => state.deviceType)
+  const deskMob = useAppStore((state) => state.deskMob)
 
   const captchaRef = useRef<{ value: string | null }>(null)
 
@@ -82,29 +83,39 @@ export const GiveawayDefault: React.FC = () => {
       {state.currentStep < 2 ? (
         // not registered
         <>
-          <div className={classes.partyRight}>
-            <svg className={classes.partyRightBox} viewBox="0 0 349 157" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M0.5 84.4348C0.5 37.9085 38.217 0.191406 84.7433 0.191406H348.004V71.9896C348.004 118.516 310.287 156.233 263.76 156.233H0.5V84.4348Z"
-                fill="#00AFA7"
-              />
-            </svg>
-            <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
-            <img
-              className={classNames(classes.giveawayCatRed, isCatsTurned && classes.catTurned)}
-              src={giveawayCatRed}
-              alt=""
-              draggable="false"
-            />
-          </div>
-          <div className={classes.partyLeft}>
-            <img
-              className={classNames(classes.giveawayCatGray, isCatsTurned && classes.catTurned)}
-              src={giveawayCatGray}
-              alt=""
-              draggable="false"
-            />
-          </div>
+          {deskMob(
+            <>
+              <div className={classes.partyRight}>
+                <svg
+                  className={classes.partyRightBox}
+                  viewBox="0 0 349 157"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.5 84.4348C0.5 37.9085 38.217 0.191406 84.7433 0.191406H348.004V71.9896C348.004 118.516 310.287 156.233 263.76 156.233H0.5V84.4348Z"
+                    fill="#00AFA7"
+                  />
+                </svg>
+                <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
+                <img
+                  className={classNames(classes.giveawayCatRed, isCatsTurned && classes.catTurned)}
+                  src={giveawayCatRed}
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+              <div className={classes.partyLeft}>
+                <img
+                  className={classNames(classes.giveawayCatGray, isCatsTurned && classes.catTurned)}
+                  src={giveawayCatGray}
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+            </>,
+            null,
+          )}
 
           <div id="giveaway" className={classes.register}>
             <div className={classes.registerBody}>
@@ -152,29 +163,39 @@ export const GiveawayDefault: React.FC = () => {
       ) : (
         // registered
         <>
-          <div className={classNames(classes.partyRight, classes.partyRightRegistered)}>
-            <svg className={classes.partyRightBox} viewBox="0 0 349 157" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M0.5 84.4348C0.5 37.9085 38.217 0.191406 84.7433 0.191406H348.004V71.9896C348.004 118.516 310.287 156.233 263.76 156.233H0.5V84.4348Z"
-                fill="#00AFA7"
-              />
-            </svg>
-            <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
-            <img
-              className={classNames(classes.giveawayCatRed, isCatsTurned && classes.catTurned)}
-              src={giveawayCatRed}
-              alt=""
-              draggable="false"
-            />
-          </div>
-          <div className={classes.partyLeft}>
-            <img
-              className={classNames(classes.giveawayCatGray, isCatsTurned && classes.catTurned)}
-              src={giveawayCatGray}
-              alt=""
-              draggable="false"
-            />
-          </div>
+          {deskMob(
+            <>
+              <div className={classNames(classes.partyRight, classes.partyRightRegistered)}>
+                <svg
+                  className={classes.partyRightBox}
+                  viewBox="0 0 349 157"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.5 84.4348C0.5 37.9085 38.217 0.191406 84.7433 0.191406H348.004V71.9896C348.004 118.516 310.287 156.233 263.76 156.233H0.5V84.4348Z"
+                    fill="#00AFA7"
+                  />
+                </svg>
+                <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
+                <img
+                  className={classNames(classes.giveawayCatRed, isCatsTurned && classes.catTurned)}
+                  src={giveawayCatRed}
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+              <div className={classes.partyLeft}>
+                <img
+                  className={classNames(classes.giveawayCatGray, isCatsTurned && classes.catTurned)}
+                  src={giveawayCatGray}
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+            </>,
+            null,
+          )}
 
           <div id="giveaway" className={classes.registered}>
             <div className={classes.registeredBody}>
@@ -191,29 +212,39 @@ export const GiveawayDefault: React.FC = () => {
       {!winnersList.length ? (
         // no winners yet
         <>
-          <div className={classNames(classes.partyRight, classes.partyRightRegistered)}>
-            <svg className={classes.partyRightBox} viewBox="0 0 349 157" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M0.5 84.4348C0.5 37.9085 38.217 0.191406 84.7433 0.191406H348.004V71.9896C348.004 118.516 310.287 156.233 263.76 156.233H0.5V84.4348Z"
-                fill="#00AFA7"
-              />
-            </svg>
-            <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
-            <img
-              className={classNames(classes.giveawayCatRed, isCatsTurned && classes.catTurned)}
-              src={giveawayCatRed}
-              alt=""
-              draggable="false"
-            />
-          </div>
-          <div className={classes.partyLeft}>
-            <img
-              className={classNames(classes.giveawayCatGray, isCatsTurned && classes.catTurned)}
-              src={giveawayCatGray}
-              alt=""
-              draggable="false"
-            />
-          </div>
+          {deskMob(
+            <>
+              <div className={classNames(classes.partyRight, classes.partyRightRegistered)}>
+                <svg
+                  className={classes.partyRightBox}
+                  viewBox="0 0 349 157"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.5 84.4348C0.5 37.9085 38.217 0.191406 84.7433 0.191406H348.004V71.9896C348.004 118.516 310.287 156.233 263.76 156.233H0.5V84.4348Z"
+                    fill="#00AFA7"
+                  />
+                </svg>
+                <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
+                <img
+                  className={classNames(classes.giveawayCatRed, isCatsTurned && classes.catTurned)}
+                  src={giveawayCatRed}
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+              <div className={classes.partyLeft}>
+                <img
+                  className={classNames(classes.giveawayCatGray, isCatsTurned && classes.catTurned)}
+                  src={giveawayCatGray}
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+            </>,
+            null,
+          )}
 
           <div id="giveaway" className={classes.over}>
             <div className={classes.registeredBody}>
@@ -225,29 +256,39 @@ export const GiveawayDefault: React.FC = () => {
       ) : (
         // there are winners
         <>
-          <div className={classNames(classes.partyRight, classes.partyRightRegistered)}>
-            <svg className={classes.partyRightBox} viewBox="0 0 349 157" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M0.5 84.4348C0.5 37.9085 38.217 0.191406 84.7433 0.191406H348.004V71.9896C348.004 118.516 310.287 156.233 263.76 156.233H0.5V84.4348Z"
-                fill="#00AFA7"
-              />
-            </svg>
-            <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
-            <img
-              className={classNames(classes.giveawayCatRed, isCatsTurned && classes.catTurned)}
-              src={giveawayCatRed}
-              alt=""
-              draggable="false"
-            />
-          </div>
-          <div className={classes.partyLeft}>
-            <img
-              className={classNames(classes.giveawayCatGray, isCatsTurned && classes.catTurned)}
-              src={giveawayCatGray}
-              alt=""
-              draggable="false"
-            />
-          </div>
+          {deskMob(
+            <>
+              <div className={classNames(classes.partyRight, classes.partyRightRegistered)}>
+                <svg
+                  className={classes.partyRightBox}
+                  viewBox="0 0 349 157"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.5 84.4348C0.5 37.9085 38.217 0.191406 84.7433 0.191406H348.004V71.9896C348.004 118.516 310.287 156.233 263.76 156.233H0.5V84.4348Z"
+                    fill="#00AFA7"
+                  />
+                </svg>
+                <img className={classes.loaderStarBig} src={loaderStarBig} alt="" draggable="false" />
+                <img
+                  className={classNames(classes.giveawayCatRed, isCatsTurned && classes.catTurned)}
+                  src={giveawayCatRed}
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+              <div className={classes.partyLeft}>
+                <img
+                  className={classNames(classes.giveawayCatGray, isCatsTurned && classes.catTurned)}
+                  src={giveawayCatGray}
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+            </>,
+            null,
+          )}
 
           <div id="giveaway" className={classes.winners}>
             <div className={classes.registeredBody}>

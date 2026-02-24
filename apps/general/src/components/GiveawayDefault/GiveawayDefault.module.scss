@@ -2,7 +2,7 @@
 
 $contentWidth: 480;
 $contentWidthMob: 375;
-$contentPaddingMob: 20;
+$contentPaddingMob: 16;
 
 .title {
   color: #002d50;
@@ -16,7 +16,9 @@ $contentPaddingMob: 20;
   }
 
   @include mobile {
-    margin-bottom: mpx(16);
+    margin-bottom: mpx(8);
+    font-size: mpx(44);
+    text-align: center;
   }
 }
 
@@ -28,7 +30,9 @@ $contentPaddingMob: 20;
   }
 
   @include mobile {
-    margin-bottom: mpx(16);
+    margin-bottom: mpx(32);
+    font-size: mpx(18);
+    text-align: center;
   }
 }
 
@@ -187,6 +191,14 @@ $contentPaddingMob: 20;
     border-radius: dpx(0 48);
   }
 
+  @include mobile {
+    width: mpx(116);
+    height: mpx(41);
+    border-left: mpx(2) solid var(--Deep-Blue, #002d50);
+    border-bottom: mpx(2) solid var(--Deep-Blue, #002d50);
+    border-radius: mpx(0 40);
+  }
+
   p {
     color: #000000;
     font-weight: 400;
@@ -194,12 +206,19 @@ $contentPaddingMob: 20;
     @include mobile {
       font-size: mpx(24) !important;
     }
+
+    @include mobile {
+      font-size: mpx(18) !important;
+    }
   }
 }
 
 .giveawayEmailFormText {
   @include desktop {
     gap: dpx(0);
+  }
+  @include mobile {
+    gap: mpx(0);
   }
 }
 
@@ -214,7 +233,8 @@ $contentPaddingMob: 20;
   }
 
   @include mobile {
-    font-size: mpx(18) !important;
+    font-size: mpx(30) !important;
+    line-height: 130%;
   }
 }
 
@@ -225,7 +245,7 @@ $contentPaddingMob: 20;
   }
 
   @include mobile {
-    font-size: mpx(13) !important;
+    font-size: mpx(16) !important;
   }
 }
 
@@ -243,29 +263,32 @@ $contentPaddingMob: 20;
   @include mobile {
     position: unset;
     width: 100%;
-    border-radius: mpx(16);
+    padding: mpx(47 22 22);
+    border: mpx(2) solid var(--Deep-Blue, #002d50);
+    border-radius: mpx(40);
   }
 }
 
 // giveawayEmailForm
 .giveawayEmailForm {
+  opacity: 0;
+
   @include desktop {
     gap: dpx(24);
     top: 0;
     width: dpx($contentWidth);
-    opacity: 0;
   }
 
   @include mobile {
-    gap: mpx(12);
-    padding: mpx(16);
+    gap: mpx(16);
     transform: translateX(mpx(-$contentWidthMob));
   }
 
   &[class*='_emailActive'] {
+    opacity: 1;
+
     @include desktop {
       top: dpx(58);
-      opacity: 1;
     }
     @include mobile {
       transform: translateX(0);
@@ -288,9 +311,10 @@ $contentPaddingMob: 20;
   }
 
   @include mobile {
+    padding: mpx(14 22);
     font-size: mpx(14);
-    border-radius: mpx(8);
-    padding: mpx(17 19);
+    border: mpx(2) solid #002d50;
+    border-radius: mpx(64);
   }
 
   &:hover,
@@ -333,14 +357,7 @@ $contentPaddingMob: 20;
 .giveawayEmailFormCheckbox {
   margin: 0;
   order: 2;
-
-  @include desktop {
-    gap: dpx(12);
-  }
-
-  @include mobile {
-    gap: mpx(12);
-  }
+  gap: 0;
 
   span {
     border: 1px solid var(--black) !important;
@@ -386,7 +403,7 @@ $contentPaddingMob: 20;
     }
 
     @include mobile {
-      font-size: mpx(13) !important;
+      font-size: mpx(12) !important;
     }
   }
 
@@ -439,9 +456,10 @@ $contentPaddingMob: 20;
   }
 
   @include mobile {
-    gap: mpx(12);
-    padding: mpx(16);
+    gap: mpx(24);
     transform: translateX(0);
+    opacity: 0;
+    pointer-events: none;
   }
 
   &[class*='_shareActive'] {
@@ -452,6 +470,8 @@ $contentPaddingMob: 20;
 
     @include mobile {
       transform: translateX(mpx(-$contentWidthMob));
+      opacity: 1;
+      pointer-events: all;
     }
   }
 }
@@ -462,8 +482,8 @@ $contentPaddingMob: 20;
   }
 
   @include mobile {
-    justify-content: flex-start;
-    gap: mpx(16);
+    justify-content: space-between;
+    gap: mpx(2);
   }
 }
 
@@ -478,8 +498,8 @@ $contentPaddingMob: 20;
     }
 
     @include mobile {
-      width: mpx(40);
-      height: mpx(40);
+      width: mpx(64);
+      height: mpx(64);
     }
   }
 
@@ -584,6 +604,12 @@ button.giveawayShareFormLink {
 }
 
 // winners
+.winners {
+  @include mobile {
+    text-align: center;
+  }
+}
+
 .winnersTitle {
   line-height: 140%;
 
@@ -593,8 +619,8 @@ button.giveawayShareFormLink {
   }
 
   @include mobile {
-    margin-bottom: mpx(12);
-    font-size: mpx(20);
+    margin-bottom: mpx(16);
+    font-size: mpx(18);
   }
 
   a {
@@ -605,17 +631,15 @@ button.giveawayShareFormLink {
 
 .winnersList {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 
   @include desktop {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     gap: dpx(8);
   }
 
   @include mobile {
-    flex-direction: column;
-    align-items: flex-start;
     gap: mpx(4);
   }
 }
@@ -630,8 +654,8 @@ button.giveawayShareFormLink {
   }
 
   @include mobile {
-    padding: mpx(8 12);
+    padding: mpx(8 16);
     border-radius: mpx(8);
-    font-size: mpx(20);
+    font-size: mpx(16);
   }
 }

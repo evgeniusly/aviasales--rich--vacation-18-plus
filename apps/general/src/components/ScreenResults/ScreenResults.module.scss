@@ -8,7 +8,7 @@
   }
 
   @include mobile {
-    padding: mpx(61 20 0);
+    padding: mpx(26 0 0);
   }
 }
 
@@ -21,6 +21,11 @@
     padding: dpx(48 64);
     border-left: dpx(2) solid #002d50;
     border-right: dpx(2) solid #002d50;
+  }
+
+  @include mobile {
+    width: mpx(375);
+    padding: mpx(40 16);
   }
 }
 
@@ -116,6 +121,12 @@
     margin-bottom: dpx(24);
     font-size: dpx(28);
   }
+
+  @include mobile {
+    margin-bottom: mpx(16);
+    font-size: mpx(14);
+    text-align: center;
+  }
 }
 
 .resultTitle {
@@ -128,6 +139,12 @@
     margin-bottom: dpx(24);
     font-size: dpx(104);
   }
+
+  @include mobile {
+    margin-bottom: mpx(16);
+    font-size: mpx(44);
+    text-align: center;
+  }
 }
 
 .resultText {
@@ -135,6 +152,12 @@
 
   @include desktop {
     font-size: dpx(28);
+  }
+
+  @include mobile {
+    margin-bottom: mpx(40);
+    font-size: mpx(14);
+    text-align: center;
   }
 }
 
@@ -145,6 +168,11 @@
   @include desktop {
     grid-template-columns: dpx(172) dpx(485);
     gap: dpx(16);
+  }
+
+  @include mobile {
+    grid-template-columns: mpx(107) mpx(218);
+    gap: mpx(16);
   }
 }
 
@@ -159,11 +187,19 @@
   background-repeat: no-repeat;
 
   @include desktop {
+    width: dpx(172);
+    height: dpx(72);
     padding-top: dpx(6);
     font-size: dpx(40);
     line-height: dpx(48);
-    width: dpx(172);
-    height: dpx(72);
+  }
+
+  @include mobile {
+    width: mpx(107);
+    height: mpx(44);
+    color: #002d50;
+    font-size: mpx(30);
+    line-height: 130%;
   }
 }
 
@@ -173,6 +209,10 @@
   @include desktop {
     font-size: dpx(28);
   }
+
+  @include mobile {
+    font-size: mpx(14);
+  }
 }
 
 .resultActions {
@@ -180,6 +220,40 @@
     display: grid;
     width: dpx(340);
     margin-top: dpx(48);
+  }
+
+  @include mobile {
+    margin-top: mpx(24);
+  }
+}
+
+.resultImageExtra {
+  position: relative;
+}
+
+.resultImageExtraLeft {
+  @include mobile {
+    display: block;
+    position: absolute;
+    margin: auto;
+    left: mpx(33 - 44);
+    right: mpx(298 - 44);
+    top: mpx(0);
+    width: mpx(44);
+    height: mpx(44);
+  }
+}
+
+.resultImageExtraRight {
+  @include mobile {
+    display: block;
+    position: absolute;
+    margin: auto;
+    left: mpx(194 - 130);
+    top: mpx(127);
+    right: mpx(51 - 130);
+    width: mpx(130);
+    height: mpx(130);
   }
 }
 
@@ -195,6 +269,17 @@
     box-shadow: dpx(0 22.239 66.716 0) rgba(36, 33, 83, 0.15);
     transform: rotate(5deg);
   }
+
+  @include mobile {
+    width: mpx(210);
+    height: mpx(258);
+    margin: 0 auto mpx(27);
+    padding: mpx(8.303 9.639 7.697 8.361);
+    border: mpx(1) solid var(--Black-100, #000);
+    border-radius: mpx(32);
+    box-shadow: mpx(0 10.147 30.441 0) rgba(36, 33, 83, 0.15);
+    transform: rotate(5deg);
+  }
 }
 
 .resultImage {
@@ -205,6 +290,10 @@
 
   @include desktop {
     border-radius: dpx(60);
+  }
+
+  @include mobile {
+    border-radius: mpx(28);
   }
 }
 .resultImageCentered {
@@ -292,6 +381,12 @@
     margin-bottom: dpx(16);
     font-size: dpx(80);
   }
+
+  @include mobile {
+    margin-bottom: mpx(16);
+    text-align: center;
+    font-size: mpx(44);
+  }
 }
 
 .promoText {
@@ -301,6 +396,11 @@
     width: dpx(570);
     font-size: dpx(28);
   }
+
+  @include mobile {
+    margin-bottom: mpx(24);
+    font-size: mpx(18);
+  }
 }
 
 .promoActions {
@@ -309,6 +409,11 @@
   @include desktop {
     margin-top: dpx(56);
     width: dpx(404);
+  }
+
+  @include mobile {
+    margin: 0 auto mpx(32);
+    width: mpx(327);
   }
 }
 
@@ -320,16 +425,22 @@
     width: dpx(537);
     height: dpx(508);
   }
+
+  @include mobile {
+    position: relative;
+    width: mpx(375);
+    height: mpx(365);
+    margin-left: mpx(-16);
+  }
 }
 
 .promoImage {
-  @include desktop {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-  }
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes promoBageAnim {
@@ -342,6 +453,7 @@
   }
 }
 .promoBage {
+  display: block;
   position: absolute;
   transform-origin: 94% 50%;
 
@@ -352,9 +464,18 @@
     height: dpx(72);
     animation: promoBageAnim 6s ease-in-out infinite;
   }
+
+  @include mobile {
+    left: mpx(19);
+    top: mpx(-9);
+    width: mpx(194);
+    height: mpx(60);
+    animation: promoBageAnim 6s ease-in-out infinite;
+  }
 }
 
 .promoRope {
+  display: block;
   position: absolute;
 
   @include desktop {
@@ -363,9 +484,22 @@
     width: dpx(20);
     height: dpx(27);
   }
+
+  @include mobile {
+    left: mpx(199);
+    top: mpx(20);
+    width: mpx(18);
+    height: mpx(4);
+  }
 }
 
 //
+.bottomContent {
+  @include mobile {
+    padding-bottom: mpx(291);
+  }
+}
+
 .giveawayHalfCircles {
   @include desktop {
     display: block;
@@ -424,5 +558,17 @@
 .bottomContent {
   @include desktop {
     padding-top: dpx(68);
+  }
+}
+
+.giveawayCatsMob {
+  @include mobile {
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    transform: translateX(-50%);
+    width: mpx(397);
+    height: mpx(275);
   }
 }

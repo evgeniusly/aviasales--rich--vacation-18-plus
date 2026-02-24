@@ -1,0 +1,57 @@
+// unrotated sizes
+$width: 333;
+$height: 65;
+$widthMob: 195;
+$heightMob: 41;
+// rotated position
+$top: 220;
+$topMob: 206;
+
+@keyframes buttonToGiveawayAnim {
+  0%,
+  100% {
+    transform: rotate(-90deg);
+  }
+  40% {
+    transform: translateY(42%) rotate(-90deg);
+  }
+}
+.buttonToGiveaway {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  color: #002d50;
+  text-transform: uppercase;
+  background: #e7c37d;
+  transition: opacity var(--transition-main);
+  animation: buttonToGiveawayAnim 3s ease-in-out infinite;
+  z-index: 101;
+
+  @include desktop {
+    right: dpx(-$width * 0.5 + $height * 0.5 - 1);
+    top: dpx($top + $width * 0.5 - $height * 0.5);
+    width: dpx($width);
+    height: dpx($height);
+    padding-top: dpx(4);
+    font-size: dpx(24);
+    letter-spacing: dpx(0.48);
+    border-radius: dpx(64 64 0 0);
+    cursor: pointer;
+  }
+
+  @include mobile {
+    right: mpx(-$widthMob * 0.5 + $heightMob * 0.5 - 1);
+    top: mpx($topMob + $widthMob * 0.5 - $heightMob * 0.5);
+    width: mpx($widthMob);
+    height: mpx($heightMob);
+    padding-top: mpx(4);
+    font-size: mpx(12);
+    border-radius: mpx(56 56 0 0);
+  }
+}
+
+.buttonToGiveawayHidden {
+  opacity: 0;
+  pointer-events: none;
+}
