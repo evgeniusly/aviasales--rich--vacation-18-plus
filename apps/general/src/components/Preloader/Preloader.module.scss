@@ -33,6 +33,13 @@
     width: dpx(133);
     height: dpx(327);
   }
+
+  @include mobile {
+    width: mpx(114);
+    height: mpx(282);
+    margin: mpx(0 0 56 50);
+    padding-top: dpx(50);
+  }
 }
 
 .title {
@@ -46,11 +53,23 @@
     margin-bottom: dpx(16);
     font-size: dpx(104);
   }
+
+  @include mobile {
+    width: mpx(343);
+    margin-bottom: mpx(8);
+    font-size: mpx(62);
+  }
 }
 
 .text {
   @include desktop {
     margin-bottom: dpx(16);
     font-size: dpx(28);
+  }
+
+  @include mobile {
+    width: mpx(343);
+    margin-bottom: mpx(16);
+    font-size: mpx(18);
   }
 }

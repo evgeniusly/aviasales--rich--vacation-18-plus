@@ -31,21 +31,23 @@
   @include mobile {
     gap: mpx(16);
     width: 100%;
-    padding: mpx(12 24);
-    border-radius: mpx(12 12 0 0);
+    padding: mpx(12 20);
+    border-top: mpx(1) solid #002d50;
   }
 }
 
 .text {
   color: var(--cookies-text-color);
   font-weight: 500;
-  line-height: 145%;
 
   @include desktop {
     font-size: dpx(13);
+    line-height: 145%;
   }
 
   @include mobile {
+    font-size: mpx(13);
+    line-height: 130%;
     font-size: mpx(13);
   }
 }
@@ -78,8 +80,9 @@
 
   @include mobile {
     width: mpx(74);
-    height: mpx(38);
+    height: mpx(34);
     font-size: mpx(14);
+    letter-spacing: mpx(0.14);
     border-radius: mpx(8);
   }
 }

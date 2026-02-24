@@ -5,10 +5,12 @@ import { SmartCaptcha } from '@kosyanmedia/devcom-spec-uikit/dist/elements'
 
 import { answerIncrement } from '~/api/result'
 import glass from '~/assets/images/glass.svg?url'
+import glassMob from '~/assets/images/glassMob.svg?url'
 import homeBall from '~/assets/images/homeBall.png'
 import homeCats from '~/assets/images/homeCats.png'
 import homeCircles from '~/assets/images/homeCircles.svg?url'
 import homeMan from '~/assets/images/homeMan.png'
+import homeMob from '~/assets/images/homeMob.png'
 import homeStars from '~/assets/images/homeStars.png'
 import partyBack from '~/assets/images/partyBack.svg?url'
 import partyCircles from '~/assets/images/partyCircles.svg?url'
@@ -50,14 +52,17 @@ export const ScreenHome: React.FC = () => {
                 <div className={classes.titleMainContent}>Отпуск</div>
               </div>
               <div className={classes.titleGlass}>
-                <img className={classes.glass} src={glass} alt="" draggable="false" />
+                <img className={classes.glass} src={deskMob(glass, glassMob)} alt="" draggable="false" />
               </div>
               <div className={classes.titleSec}>
                 <div className={classes.titleSecContent}>18+</div>
               </div>
-              <div className={classes.titleCircles}>
-                <img className={classes.homeCircles} src={homeCircles} alt="" draggable="false" />
-              </div>
+              {deskMob(
+                <div className={classes.titleCircles}>
+                  <img className={classes.homeCircles} src={homeCircles} alt="" draggable="false" />
+                </div>,
+                null,
+              )}
             </div>
 
             <div className={classes.text}>
@@ -82,23 +87,26 @@ export const ScreenHome: React.FC = () => {
         </div>
 
         <div className={classes.partyWrap}>
-          <div className={classes.partyContent}>
-            <img className={classes.partyBack} src={partyBack} alt="" draggable="false" />
-            <div className={classes.partyDots}></div>
-            <img className={classes.partyCircles} src={partyCircles} alt="" draggable="false" />
-            <Floater>
-              <img className={classes.homeStars} src={homeStars} alt="" draggable="false" />
-            </Floater>
-            <ParallaxByMouse distance={-1}>
-              <img className={classes.homeBall} src={homeBall} alt="" draggable="false" />
-            </ParallaxByMouse>
-            <ParallaxByMouse distance={2}>
-              <img className={classes.homeMan} src={homeMan} alt="" draggable="false" />
-            </ParallaxByMouse>
-            <ParallaxByMouse distance={4}>
-              <img className={classes.homeCats} src={homeCats} alt="" draggable="false" />
-            </ParallaxByMouse>
-          </div>
+          {deskMob(
+            <div className={classes.partyContent}>
+              <img className={classes.partyBack} src={partyBack} alt="" draggable="false" />
+              <div className={classes.partyDots}></div>
+              <img className={classes.partyCircles} src={partyCircles} alt="" draggable="false" />
+              <Floater>
+                <img className={classes.homeStars} src={homeStars} alt="" draggable="false" />
+              </Floater>
+              <ParallaxByMouse distance={-1}>
+                <img className={classes.homeBall} src={homeBall} alt="" draggable="false" />
+              </ParallaxByMouse>
+              <ParallaxByMouse distance={2}>
+                <img className={classes.homeMan} src={homeMan} alt="" draggable="false" />
+              </ParallaxByMouse>
+              <ParallaxByMouse distance={4}>
+                <img className={classes.homeCats} src={homeCats} alt="" draggable="false" />
+              </ParallaxByMouse>
+            </div>,
+            <img className={classes.homeMob} src={homeMob} alt="" draggable="false" />,
+          )}
         </div>
       </div>
     </div>

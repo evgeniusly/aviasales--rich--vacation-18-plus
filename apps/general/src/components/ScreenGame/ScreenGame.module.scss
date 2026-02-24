@@ -9,11 +9,6 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-
-  @include mobile {
-    justify-content: flex-end;
-    min-height: mpx(667);
-  }
 }
 
 .main {
@@ -34,9 +29,9 @@
     background-size: dpx(3802 1782);
   }
 
-  // @include mobile {
-  //   padding-bottom: mpx(150);
-  // }
+  @include mobile {
+    padding: mpx(48 0 168);
+  }
 }
 
 .mainBgLeft,
@@ -72,6 +67,80 @@
   }
 }
 
+.mainBgBottom {
+  @include mobile {
+    display: grid;
+    grid-template-columns: calc(50% + #{mpx(66)}) calc(50% - #{mpx(66)});
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: mpx(125.5);
+    border-top: mpx(1) solid #002d50;
+  }
+}
+
+.mainBgBottomLeft {
+  @include mobile {
+    position: relative;
+    border-right: mpx(1) solid #002d50;
+  }
+}
+
+.mainBgBottomLeftDots {
+  @include mobile {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: mpx(62);
+    height: 100%;
+    background-image: image('dotsPattern.png');
+    background-size: dpx(124.5);
+    background-position: right center;
+  }
+}
+
+.gameBgCirclesMob {
+  @include mobile {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+  }
+}
+
+.mainBgBottomRight {
+  @include mobile {
+    position: relative;
+  }
+}
+
+.glassMob {
+  @include mobile {
+    display: block;
+    position: absolute;
+    left: mpx(22);
+    top: mpx(19);
+    width: mpx(80);
+    height: mpx(86);
+  }
+}
+
+.gameBgMob {
+  @include mobile {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: mpx(235);
+    bottom: mpx(138);
+    margin: auto;
+    width: mpx(307);
+    height: mpx(294);
+  }
+}
+
 .mainHidding {
   opacity: 0;
   transform: translateY(-10vh);
@@ -101,10 +170,11 @@
     font-size: dpx(31);
   }
 
-  // @include mobile {
-  //   margin-bottom: mpx(8);
-  //   font-size: mpx(24);
-  // }
+  @include mobile {
+    width: mpx(323);
+    margin: mpx(20) auto mpx(8);
+    font-size: mpx(24);
+  }
 }
 
 .subTitle {
@@ -115,10 +185,11 @@
     font-size: dpx(24);
   }
 
-  // @include mobile {
-  //   margin-bottom: mpx(32);
-  //   font-size: mpx(16);
-  // }
+  @include mobile {
+    width: mpx(323);
+    margin: 0 auto mpx(24);
+    font-size: mpx(16);
+  }
 }
 
 //
@@ -130,14 +201,14 @@
     gap: dpx(60);
   }
 
-  // @include mobile {
-  //   gap: mpx(8);
-  // }
+  @include mobile {
+    gap: mpx(16);
+  }
 }
 
 .cardWrap {
   position: relative;
-  transition: 0.4s cubic-bezier(0.3, 0.6, 0.5, 1.5);
+  transition: 0.4s cubic-bezier(0.3, 0.6, 0.4, 1.4);
   transition-property: transform, opacity;
   will-change: transform, opacity;
   backface-visibility: hidden;
@@ -147,27 +218,27 @@
     height: dpx(550);
   }
 
-  // @include mobile {
-  //   width: mpx(170);
-  //   height: mpx(242);
-  // }
-
-  // @include hover {
-  //   .cardGlow {
-  //     opacity: 1;
-  //   }
-  // }
+  @include mobile {
+    width: mpx(158);
+    height: mpx(244);
+  }
 }
 
 .cardLeft {
   @include desktop {
     transform: rotate(-5deg);
   }
+  @include mobile {
+    transform: translate(mpx(-4), mpx(70)) rotate(-5deg);
+  }
 }
 
 .cardRight {
   @include desktop {
     transform: translateY(dpx(-38)) rotate(5deg);
+  }
+  @include mobile {
+    transform: rotate(5deg);
   }
 }
 
@@ -192,6 +263,13 @@
       transform: scale(1.01);
     }
   }
+
+  @include mobile {
+    padding: mpx(6);
+    border: mpx(1) solid #002d50;
+    border-radius: mpx(26);
+    box-shadow: mpx(0 7.62 22.859 0) rgba(36, 33, 83, 0.15);
+  }
 }
 
 .cardImgWrap {
@@ -202,6 +280,13 @@
     top: dpx(14);
     right: dpx(14);
     bottom: dpx(14);
+  }
+
+  @include mobile {
+    left: mpx(6);
+    top: mpx(6);
+    right: mpx(6);
+    bottom: mpx(6);
   }
 }
 
@@ -217,6 +302,10 @@
 
   @include desktop {
     border-radius: dpx(48);
+  }
+
+  @include mobile {
+    border-radius: mpx(22);
   }
 }
 
@@ -239,6 +328,17 @@
     border: dpx(2) solid #000;
     border-radius: dpx(46);
   }
+
+  @include mobile {
+    left: mpx(6);
+    right: mpx(6);
+    bottom: mpx(6);
+    height: mpx(56);
+    font-size: mpx(14.3);
+    padding: mpx(8);
+    border: mpx(1) solid #000;
+    border-radius: mpx(22);
+  }
 }
 
 .cardSelected,
@@ -259,10 +359,10 @@
 
 .cardSelected {
   &.cardLeft {
-    transform: translateX(32%) rotate(2deg) scale(1.15);
+    transform: translateX(32%) rotate(2deg) scale(1.2);
   }
   &.cardRight {
-    transform: translateX(-32%) rotate(-2deg) scale(1.15);
+    transform: translateX(-32%) rotate(-2deg) scale(1.2);
   }
 }
 
@@ -289,6 +389,10 @@
   @include desktop {
     padding-top: dpx(104);
   }
+
+  @include mobile {
+    padding-top: mpx(48);
+  }
 }
 
 .endingHidding {
@@ -308,6 +412,11 @@
     margin-bottom: dpx(15);
     font-size: dpx(104);
   }
+
+  @include mobile {
+    margin-bottom: mpx(21);
+    font-size: mpx(62);
+  }
 }
 
 .emdingImageWrap {
@@ -319,8 +428,8 @@
   }
 
   @include mobile {
-    width: mpx(353);
-    height: mpx(390);
+    width: mpx(375);
+    height: mpx(383);
   }
 
   > * {
@@ -347,7 +456,15 @@
     width: dpx(102);
     height: dpx(102);
   }
+
+  @include mobile {
+    left: mpx(118);
+    top: mpx(0);
+    width: mpx(64);
+    height: mpx(64);
+  }
 }
+
 .loaderStarMid {
   animation: loaderStarSmallAnim 5s ease-in-out infinite;
 
@@ -356,6 +473,13 @@
     top: dpx(403.98);
     width: dpx(160);
     height: dpx(160);
+  }
+
+  @include mobile {
+    left: mpx(48.01);
+    top: mpx(250.01);
+    width: mpx(98);
+    height: mpx(98);
   }
 }
 
@@ -376,6 +500,13 @@
     width: dpx(332);
     height: dpx(332);
   }
+
+  @include mobile {
+    left: mpx(146);
+    top: mpx(138);
+    width: mpx(205);
+    height: mpx(205);
+  }
 }
 
 .loaderAnim {
@@ -385,5 +516,10 @@
   @include desktop {
     top: dpx(57);
     height: dpx(565);
+  }
+
+  @include mobile {
+    top: mpx(31);
+    height: mpx(352);
   }
 }

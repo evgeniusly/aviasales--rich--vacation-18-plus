@@ -30,23 +30,24 @@
         border-color: #e9511d;
       }
     }
-    &:active {
-      color: var(--button-font-color-active);
-      background: var(--button-background-color-active);
-
-      transform: scale(0.95);
-      .outline {
-        transform: scale(1.05);
-      }
-    }
   }
 
   @include mobile {
     gap: mpx(4);
     width: 100%;
-    height: mpx(52);
-    padding: mpx(16 40);
+    height: mpxRound(56);
+    padding: mpxRound(16 40);
     font-size: mpx(16);
+  }
+
+  &:active {
+    color: var(--button-font-color-active);
+    background: var(--button-background-color-active);
+
+    transform: scale(0.95);
+    .outline {
+      transform: scale(1.05);
+    }
   }
 
   &,
@@ -55,7 +56,7 @@
       border-radius: dpx(64);
     }
     @include mobile {
-      border-radius: mpx(16);
+      border-radius: mpx(64);
     }
   }
 }
@@ -83,6 +84,15 @@ a.button {
     border-radius: dpx(56);
     transition: var(--transition-main);
     transition-property: border;
+  }
+
+  @include mobile {
+    left: mpxRound(-8);
+    top: mpxRound(-8);
+    right: mpxRound(-8);
+    bottom: mpxRound(-8);
+    border: mpx(1) solid #002d50;
+    border-radius: mpx(56);
   }
 }
 

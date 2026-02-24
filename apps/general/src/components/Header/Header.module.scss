@@ -11,6 +11,11 @@
     height: dpx(80);
     border-bottom: dpx(2) solid #002d50;
   }
+
+  @include mobile {
+    height: mpx(50);
+    border-bottom: mpx(1) solid #002d50;
+  }
 }
 
 .content {
@@ -25,8 +30,8 @@
   }
 
   @include mobile {
-    padding-top: mpx(16);
-    width: mpx(343);
+    padding: mpx(8 16);
+    width: 100%;
   }
 }
 
@@ -40,7 +45,7 @@
   }
 
   @include mobile {
-    gap: mpx(8);
+    gap: mpx(10);
   }
 }
 
@@ -64,8 +69,8 @@
   }
 
   @include mobile {
-    width: mpx(97);
-    height: mpx(20);
+    width: mpx(81.2);
+    height: mpx(16.96);
   }
 }
 
@@ -78,8 +83,8 @@
   }
 
   @include mobile {
-    width: mpx(97);
-    height: mpx(20);
+    width: mpx(38.67);
+    height: mpx(16.92);
   }
 }
 
@@ -93,8 +98,8 @@
   }
 
   @include mobile {
-    width: mpx(8);
-    height: mpx(8);
+    width: mpx(6);
+    height: mpx(6);
   }
 }
 
@@ -117,7 +122,9 @@
   }
 
   @include mobile {
-    font-size: mpx(12);
+    padding: mpx(4 24);
+    font-size: mpx(13);
+    border-radius: mpx(32);
   }
 }
 

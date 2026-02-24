@@ -19,20 +19,25 @@
   @include desktop {
     padding-top: dpx(78);
   }
+
+  @include mobile {
+    justify-content: flex-start;
+    padding-top: mpx(48);
+  }
 }
 
 .content {
+  display: grid;
   position: relative;
 
   @include desktop {
-    display: grid;
     grid-template-columns: 956fr 964fr;
     width: 100%;
     height: 100%;
   }
 
   @include mobile {
-    padding: mpx(80 20);
+    width: 100%;
   }
 }
 
@@ -43,6 +48,10 @@
     background-image: image('dotsPattern.png');
     background-size: dpx(228.65);
     background-position: right center;
+  }
+
+  @include mobile {
+    order: 2;
   }
 }
 
@@ -69,6 +78,14 @@
     border-bottom: dpx(2) solid #002d50;
   }
 
+  @include mobile {
+    grid-template-columns: auto mpx(69) auto;
+    justify-content: center;
+    margin-bottom: mpx(16);
+    border-top: mpx(1) solid #002d50;
+    border-bottom: mpx(1) solid #002d50;
+  }
+
   > * {
     display: grid;
     justify-content: center;
@@ -76,6 +93,10 @@
 
     @include desktop {
       height: dpx(224);
+    }
+
+    @include mobile {
+      height: mpx(82);
     }
   }
 }
@@ -102,22 +123,30 @@
   line-height: 90%;
   text-transform: uppercase;
   opacity: 0;
-  transform: translateY(100%);
   animation: titleItemAnim 0.6s ease-in-out forwards;
 
   @include desktop {
     margin-top: dpx(16);
     font-size: dpx(240);
     letter-spacing: dpx(4.8);
+    transform: translateY(100%);
   }
 
   @include mobile {
-    font-size: mpx(28);
+    margin-top: mpx(8);
+    padding: mpx(0 12);
+    font-size: mpx(76);
+    transform: translateY(-100%);
   }
 }
 
 .titleGlass {
   overflow: hidden;
+
+  @include mobile {
+    border-left: mpx(1) solid #002d50;
+    border-right: mpx(1) solid #002d50;
+  }
 }
 
 .glass {
@@ -129,6 +158,11 @@
   @include desktop {
     width: dpx(176);
     height: dpx(189);
+  }
+
+  @include mobile {
+    width: mpx(58);
+    height: mpx(62);
   }
 }
 
@@ -156,6 +190,12 @@
     font-size: dpx(240);
     letter-spacing: dpx(-4.8);
   }
+
+  @include mobile {
+    margin-top: mpx(8);
+    padding-left: mpx(2);
+    font-size: mpx(76);
+  }
 }
 
 .titleCircles {
@@ -175,34 +215,36 @@
 .text {
   text-align: center;
   line-height: 140%;
+  opacity: 0;
+  animation: fadeInAnim 0.4s ease-in-out 0.8s forwards;
 
   @include desktop {
     width: dpx(698);
     margin: 0 auto dpx(48);
     font-size: dpx(24);
-    opacity: 0;
-    animation: fadeInAnim 0.4s ease-in-out 0.8s forwards;
   }
 
   @include mobile {
-    margin-bottom: mpx(24);
-    font-size: mpx(15);
+    width: mpx(311);
+    margin: 0 auto mpx(24);
+    font-size: mpx(16);
   }
 }
 
 .actions {
   display: grid;
+  margin: auto;
+  opacity: 0;
+  animation: fadeInAnim 0.4s ease-in-out 0.8s forwards;
 
   @include desktop {
     gap: dpx(24);
     width: dpx(376);
-    margin: auto;
-    opacity: 0;
-    animation: fadeInAnim 0.4s ease-in-out 0.8s forwards;
   }
 
   @include mobile {
-    gap: mpx(20);
+    gap: mpx(24);
+    width: mpx(295);
   }
 }
 
@@ -226,14 +268,24 @@
       opacity: 0.8;
     }
   }
+
+  @include mobile {
+    font-size: mpx(16);
+  }
 }
 
+//
 .partyWrap {
   @include desktop {
     display: grid;
     align-items: center;
     opacity: 0;
     animation: fadeInAnim 0.8s ease-in-out 0.2s forwards;
+  }
+
+  @include mobile {
+    order: 1;
+    height: mpx(249);
   }
 }
 
@@ -329,5 +381,13 @@
     top: dpx(423);
     width: dpx(627);
     height: dpx(465);
+  }
+}
+
+.homeMob {
+  @include mobile {
+    display: block;
+    height: 100%;
+    margin: auto;
   }
 }

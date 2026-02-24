@@ -4,6 +4,9 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { SmartCaptcha } from '@kosyanmedia/devcom-spec-uikit/dist/elements'
 
 import { answerIncrement } from '~/api/result'
+import gameBgCirclesMob from '~/assets/images/gameBgCirclesMob.svg?url'
+import gameBgMob from '~/assets/images/gameBgMob.svg?url'
+import glassMob from '~/assets/images/glassMob.svg?url'
 import loaderAnim from '~/assets/images/loaderAnim.webp'
 import loaderStarBig from '~/assets/images/loaderStarBig.svg?url'
 import loaderStarMid from '~/assets/images/loaderStarMid.svg?url'
@@ -86,11 +89,27 @@ export const ScreenGame: React.FC = () => {
       )}
 
       <div className={classNames(classes.main, isEnding && classes.mainHidding)}>
-        <div className={classes.mainBgLeft}></div>
-        <div className={classes.mainBgRight}></div>
+        {deskMob(
+          <>
+            <div className={classes.mainBgLeft}></div>
+            <div className={classes.mainBgRight}></div>
+          </>,
+          <>
+            <div className={classes.mainBgBottom}>
+              <div className={classes.mainBgBottomLeft}>
+                <div className={classes.mainBgBottomLeftDots}></div>
+                <img className={classes.gameBgCirclesMob} src={gameBgCirclesMob} alt="" draggable="false" />
+              </div>
+              <div className={classes.mainBgBottomRight}>
+                <img className={classes.glassMob} src={glassMob} alt="" draggable="false" />
+              </div>
+            </div>
+            <img className={classes.gameBgMob} src={gameBgMob} alt="" draggable="false" />
+          </>,
+        )}
 
         <div className={classes.mainContent}>
-          <ProgressBar progress={curStep / stepsTotal} value={`${curStep} / ${stepsTotal}`} />
+          <ProgressBar isInGame progress={curStep / stepsTotal} value={`${curStep} / ${stepsTotal}`} />
 
           <div className={classes.title}>Как выглядит отдых по-взрослому?</div>
           <div className={classes.subTitle}>Выберите один из&nbsp;двух вариантов</div>
