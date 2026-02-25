@@ -182,7 +182,7 @@ export const ScreenResults: React.FC = () => {
             <div className={classes.promoTitle}>Затонируйте свой отдых</div>
             <div className={classes.promoText}>
               От&nbsp;лёгкой горчинки и&nbsp;искристого вкуса тоников Rich внутренний ребёнок будет в&nbsp;восторге.
-              А&nbsp;скидка на&nbsp;напитки из&nbsp;специальной подборки порадует внешнего взрослого.
+              А&nbsp;скидка на&nbsp;напитки из&nbsp;специальной подборки порадует внешнего взрослого
             </div>
             <div className={classes.promoActions}>
               <Button glow outline mod={'blue'}>
