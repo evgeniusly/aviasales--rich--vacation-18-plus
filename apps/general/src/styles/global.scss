@@ -49,11 +49,11 @@ textarea {
 
 p:not(:last-child) {
   @include desktop {
-    margin-bottom: dpx(4);
+    margin-bottom: dpx(16);
   }
 
   @include mobile {
-    margin-bottom: mpx(8);
+    margin-bottom: mpx(16);
   }
 }
 

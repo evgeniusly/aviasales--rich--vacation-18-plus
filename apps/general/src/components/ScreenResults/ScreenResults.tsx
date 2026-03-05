@@ -43,7 +43,7 @@ export const ScreenResults: React.FC = () => {
   const [resultData, restartBtnText, isTestedLocal] = useMemo(() => {
     return [
       isTested && resultId ? cards[resultId] : undefined, //
-      isTested ? 'Передумать' : 'Передумать',
+      isTested ? 'Передумать' : 'Убедили',
       isTested,
     ]
   }, []) // do not subscribe this !
@@ -181,8 +181,12 @@ export const ScreenResults: React.FC = () => {
           <div className={classes.promoBody}>
             <div className={classes.promoTitle}>Затонируйте свой отдых</div>
             <div className={classes.promoText}>
-              От&nbsp;лёгкой горчинки и&nbsp;искристого вкуса тоников Rich внутренний ребёнок будет в&nbsp;восторге.
-              А&nbsp;скидка на&nbsp;напитки из&nbsp;специальной подборки порадует внешнего взрослого
+              <p>
+                От&nbsp;лёгкой горчинки и&nbsp;искристого вкуса тоников Rich внутренний ребёнок будет в&nbsp;восторге.
+              </p>
+              <p>
+                А&nbsp;<b>скидка на&nbsp;напитки</b> из&nbsp;специальной подборки порадует внешнего взрослого.
+              </p>
             </div>
             <div className={classes.promoActions}>
               <Button glow arrow outline mod={'blue'}>

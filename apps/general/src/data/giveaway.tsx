@@ -22,13 +22,13 @@ export const giveawayTexts: {
   registered: {
     subscribedTitle: <>Супер, вы&nbsp;участвуете в&nbsp;розыгрыше</>,
     subscribedText: (
-      <>До&nbsp;NN.NN.NN опубликуем результаты на&nbsp;этой странице и&nbsp;напишем победителям на&nbsp;почту</>
+      <>До&nbsp;17.04.26 опубликуем результаты на&nbsp;этой странице и&nbsp;напишем победителям на&nbsp;почту</>
     ),
   },
 
   over: {
     giveawayOverTitle: <>Уже выбираем победителей</>,
-    giveawayOverText: <>Розыгрыш закончился. Результаты опубликуем до&nbsp;NN.NN.NN на&nbsp;этой странице</>,
+    giveawayOverText: <>Розыгрыш закончился. Результаты опубликуем до&nbsp;17.04.26 на&nbsp;этой странице</>,
   },
 
   winners: {
