@@ -5,6 +5,7 @@ import aviasalesLogo from '~/assets/images/aviasalesLogo.svg?url'
 import clientLogo from '~/assets/images/clientLogo.svg?url'
 import { links } from '~/data'
 import { useAppStore } from '~/store/appStore'
+import { analyticsEvent } from '~/utils/analytics'
 
 import classes from './Header.module.scss'
 
@@ -23,7 +24,12 @@ export const Header: React.FC = () => {
     >
       <div className={classes.content}>
         <div className={classes.logos}>
-          <a className={classes.logoLink} href={links.aviasales} target="_blank">
+          <a
+            className={classes.logoLink}
+            href={links.aviasales}
+            target="_blank"
+            onClick={() => analyticsEvent('clickLogoAviasales')}
+          >
             <img src={aviasalesLogo} className={classes.aviasalesLogoImg} alt="aviasales" />
           </a>
 
@@ -32,13 +38,23 @@ export const Header: React.FC = () => {
             <path d="M9.05078 1L1.05073 9.00005" stroke="black" strokeWidth="1.6" strokeLinecap="round" />
           </svg>
 
-          <a className={classes.logoLink} href={links.client} target="_blank">
+          <a
+            className={classes.logoLink}
+            href={links.client}
+            target="_blank"
+            onClick={() => analyticsEvent('clickLogoRich')}
+          >
             <img src={clientLogo} className={classes.clientLogoImg} alt="" />
           </a>
         </div>
 
         <div className={classes.actions}>
-          <a className={classes.rulesLink} href={links.rules} target="_blank">
+          <a
+            className={classes.rulesLink}
+            href={links.rules}
+            target="_blank"
+            onClick={() => analyticsEvent('clickRules')}
+          >
             Правила
           </a>
         </div>

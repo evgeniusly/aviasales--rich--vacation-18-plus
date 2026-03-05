@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom'
 
 import { links } from '~/data'
 import { useAppStore } from '~/store/appStore'
+import { analyticsEvent } from '~/utils/analytics'
 
 import classes from './CookiesAlert.module.scss'
 
@@ -35,6 +36,7 @@ export const CookiesAlert: React.FC = () => {
             <button
               className={classes.button}
               onClick={() => {
+                analyticsEvent('clickOk')
                 localStorage.setItem('cokiesAccepted', 'true')
                 setIsShowed(false)
               }}

@@ -70,26 +70,26 @@ export const shareFormData: Omit<ShareFormProps, 'onShare'> = {
   linksInfo: [
     {
       [SharingType.Vk]: {
-        link: `https://vk.com/share.php?url=https://i.avs.io/TODO`,
+        link: `https://vk.com/share.php?url=https://i.avs.io/88ql4kKS`,
         // className: classes.linkVk
       },
     },
     {
       [SharingType.Telegram]: {
-        link: `https://telegram.me/share/url?url=https://i.avs.io/TODO`,
+        link: `https://telegram.me/share/url?url=https://i.avs.io/68yOfDRf`,
         // className: classes.linkTg,
       },
     },
     {
       [SharingType.Whatsapp]: {
-        link: `https://api.whatsapp.com/send?text=https://i.avs.io/TODO`,
+        link: `https://api.whatsapp.com/send?text=https://i.avs.io/3jy5-KEU`,
         // className: classes.linkWa,
       },
     },
     {
       [SharingType.Link]: {
-        link: window.location.origin,
-        // link: 'https://i.avs.io/TODO',
+        // link: window.location.origin,
+        link: 'https://i.avs.io/oOlxgIxk',
         // className: classes.linkLn
       },
     },

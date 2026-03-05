@@ -17,10 +17,11 @@ import promoRight from '~/assets/images/promoRight.svg?url'
 import promoRope from '~/assets/images/promoRope.svg?url'
 import promoRopeMob from '~/assets/images/promoRopeMob.svg?url'
 import resultRight from '~/assets/images/resultRight.svg?url'
-import { preloads, resultEmpty } from '~/data'
+import { links, preloads, resultEmpty } from '~/data'
 import { cards } from '~/data/cards'
 import { useAppStore } from '~/store/appStore'
 import { useGameStore } from '~/store/gameStore'
+import { analyticsEvent } from '~/utils/analytics'
 import assetPreloader from '~/utils/assetPreloader'
 
 import { Button } from '../Button'
@@ -57,6 +58,7 @@ export const ScreenResults: React.FC = () => {
   }, [])
 
   const onRestartClick = useCallback(() => {
+    analyticsEvent(isTestedLocal ? 'clickPeredymat' : 'clickUbedili')
     resetAll()
     gotoGame()
   }, [isTestedLocal, resetAll])
@@ -189,7 +191,14 @@ export const ScreenResults: React.FC = () => {
               </p>
             </div>
             <div className={classes.promoActions}>
-              <Button glow arrow outline mod={'blue'}>
+              <Button
+                href={links.promo}
+                glow
+                arrow
+                outline
+                mod={'blue'}
+                onClick={() => analyticsEvent('clickVybratNapitki')}
+              >
                 Выбрать напитки
               </Button>
             </div>

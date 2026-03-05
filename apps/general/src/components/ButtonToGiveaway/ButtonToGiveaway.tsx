@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import React, { useCallback, useEffect, useState } from 'react'
 
 import { useAppStore } from '~/store/appStore'
+import { analyticsEvent } from '~/utils/analytics'
 
 import classes from './ButtonToGiveaway.module.scss'
 
@@ -31,6 +32,7 @@ export const ButtonToGiveaway: React.FC<IButtonToGiveawayProps> = ({
 
   const toGiveawayClick: React.MouseEventHandler<HTMLDivElement> = useCallback(
     (e) => {
+      analyticsEvent('clickSticker')
       if (typeof onClick === 'function') onClick(e)
       const _target = giveawayRef?.current ?? document.getElementById('giveaway')
       _target?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })

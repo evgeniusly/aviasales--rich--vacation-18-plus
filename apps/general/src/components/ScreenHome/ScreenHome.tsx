@@ -16,6 +16,7 @@ import partyBack from '~/assets/images/partyBack.svg?url'
 import partyCircles from '~/assets/images/partyCircles.svg?url'
 import { preloads } from '~/data'
 import { useAppStore } from '~/store/appStore'
+import { analyticsEvent } from '~/utils/analytics'
 import assetPreloader from '~/utils/assetPreloader'
 
 import { Button } from '../Button'
@@ -70,12 +71,21 @@ export const ScreenHome: React.FC = () => {
             </div>
 
             <div className={classes.actions}>
-              <Button glow arrow outline onClick={gotoGame}>
+              <Button
+                glow
+                arrow
+                outline
+                onClick={() => {
+                  analyticsEvent('clickProitiOpros')
+                  gotoGame()
+                }}
+              >
                 Пройти опрос
               </Button>
               <button
                 className={classes.toResultBtn}
                 onClick={() => {
+                  analyticsEvent('clickKRozygryshy')
                   void answerIncrement(captchaRef?.current?.value)
                   gotoResults()
                 }}
