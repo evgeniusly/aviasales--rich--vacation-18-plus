@@ -70,7 +70,7 @@ export const ScreenHome: React.FC = () => {
             </div>
 
             <div className={classes.actions}>
-              <Button glow outline onClick={gotoGame}>
+              <Button glow arrow outline onClick={gotoGame}>
                 Пройти опрос
               </Button>
               <button

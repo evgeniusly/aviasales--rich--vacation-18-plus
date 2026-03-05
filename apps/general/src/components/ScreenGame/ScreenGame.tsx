@@ -111,7 +111,7 @@ export const ScreenGame: React.FC = () => {
         <div className={classes.mainContent}>
           <ProgressBar isInGame progress={curStep / stepsTotal} value={`${curStep} / ${stepsTotal}`} />
 
-          <div className={classes.title}>Как выглядит отдых по-взрослому?</div>
+          <div className={classes.title}>Как отдыхать по-взрослому?</div>
           <div className={classes.subTitle}>Выберите один из&nbsp;двух вариантов</div>
 
           <div className={classes.selector}>

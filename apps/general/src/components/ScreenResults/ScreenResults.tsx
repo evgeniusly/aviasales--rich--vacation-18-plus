@@ -185,7 +185,7 @@ export const ScreenResults: React.FC = () => {
               А&nbsp;скидка на&nbsp;напитки из&nbsp;специальной подборки порадует внешнего взрослого
             </div>
             <div className={classes.promoActions}>
-              <Button glow outline mod={'blue'}>
+              <Button glow arrow outline mod={'blue'}>
                 Выбрать напитки
               </Button>
             </div>

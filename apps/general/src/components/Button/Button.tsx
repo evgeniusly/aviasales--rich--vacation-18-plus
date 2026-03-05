@@ -10,6 +10,7 @@ interface IButtonProps {
   mod?: TMod | TMod[]
   glow?: boolean
   outline?: boolean
+  arrow?: boolean
   disabled?: boolean
   className?: string
   href?: string
@@ -21,6 +22,7 @@ export const Button: React.FC<IButtonProps> = ({
   mod,
   glow,
   outline,
+  arrow,
   disabled,
   className,
   href,
@@ -43,7 +45,19 @@ export const Button: React.FC<IButtonProps> = ({
     () => (
       <>
         {outline && <div className={classes.outline}></div>}
-        <div className={classes.children}>{children}</div>
+        <div className={classes.children}>
+          {children}
+          {arrow && (
+            <svg className={classes.arrow} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M2 14H26M26 14L16.6087 4M26 14L16.6087 24"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          )}
+        </div>
         {glow && (
           <div className={classes.glowWrap}>
             <div className={classes.glow}>
