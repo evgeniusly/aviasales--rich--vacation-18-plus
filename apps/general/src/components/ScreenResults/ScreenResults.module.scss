@@ -572,3 +572,28 @@
     height: mpx(275);
   }
 }
+
+.legal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #444;
+  text-align: center;
+
+  @include desktop {
+    width: dpx(1304);
+    bottom: dpx(16);
+    font-size: dpx(12);
+  }
+
+  @include mobile {
+    width: fit-content;
+    max-width: mpx(350);
+    bottom: 0;
+    padding: mpx(8 12);
+    font-size: mpx(10);
+    background-color: #ffffffaa;
+    border-radius: mpx(12 12 0 0);
+  }
+}

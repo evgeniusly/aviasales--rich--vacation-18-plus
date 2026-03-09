@@ -237,6 +237,8 @@ export const ScreenResults: React.FC = () => {
       </div>
 
       <ButtonToGiveaway />
+
+      <div className={classes.legal}>Реклама, erid: 4355052, ООО «Мултон Партнерс»</div>
     </div>
   )
 }
